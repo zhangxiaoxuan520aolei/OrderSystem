@@ -3,50 +3,84 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#3333ff">
+    android:background="#33CCCC">
 
-    <ImageView
-        android:id="@+id/start_icon"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_centerInParent="true"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/ic_launcher"
-        app:layout_heightPercent="20%"
-        app:layout_widthPercent="25%" />
-
-    <android.support.percent.PercentFrameLayout
+    <android.support.percent.PercentRelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/start_icon"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        app:layout_heightPercent="20%"
+        android:layout_centerInParent="true"
+        app:layout_heightPercent="30%"
         app:layout_widthPercent="80%">
 
-        <TextView android:id="@+id/signin"
+        <android.support.percent.PercentRelativeLayout
+            android:id="@+id/uname_edit"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_gravity="center_vertical|left"
-            android:background="@drawable/textview_border"
-            android:gravity="center"
-            android:text="登  录"
+            app:layout_heightPercent="30%"
+            app:layout_widthPercent="100%">
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/uname_Wrapper"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <EditText
+                    android:id="@+id/uname_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/edittext_border"
+                    android:drawableLeft="@drawable/icon_user"
+                    android:hint="用户名" />
+            </android.support.design.widget.TextInputLayout>
+
+        </android.support.percent.PercentRelativeLayout>
+
+        <android.support.percent.PercentRelativeLayout
+            android:id="@+id/pwd_edit"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_below="@+id/uname_edit"
+            app:layout_heightPercent="30%"
+            app:layout_widthPercent="100%">
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/upwd_Wrapper"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/pwd_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/edittext_border"
+                    android:drawableLeft="@drawable/icon_pwd"
+                    android:inputType="textPassword"
+                    android:hint="密    码" />
+            </android.support.design.widget.TextInputLayout>
+
+        </android.support.percent.PercentRelativeLayout>
+
+        <Button
+            android:id="@+id/login_btn"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_below="@+id/pwd_edit"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/button_style"
+            android:text="登   录"
             android:textColor="#000"
-            android:textSize="20sp"
-            app:layout_heightPercent="50%"
-            app:layout_widthPercent="40%" />
+            android:textSize="30sp"
+            app:layout_heightPercent="30%"
+            app:layout_widthPercent="70%" />
+    </android.support.percent.PercentRelativeLayout>
 
-        <TextView android:id="@+id/regist"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_gravity="center_vertical|right"
-            android:background="@drawable/textview_border"
-            android:gravity="center"
-            android:text="注  册"
-            android:textSize="20sp"
-            app:layout_heightPercent="50%"
-            app:layout_widthPercent="40%" />
-    </android.support.percent.PercentFrameLayout>
-
-
+    <TextView
+        android:id="@+id/regist_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:text="没有账号？注册一个 - - ->"
+        android:textColor="#06c"
+        android:textSize="15sp" />
 </android.support.percent.PercentRelativeLayout>
