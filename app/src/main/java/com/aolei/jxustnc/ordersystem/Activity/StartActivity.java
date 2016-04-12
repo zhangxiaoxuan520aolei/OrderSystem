@@ -10,7 +10,6 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.aolei.jxustnc.ordersystem.R;
 import com.aolei.jxustnc.ordersystem.Utils.MyTextChangeListener;
