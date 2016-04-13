@@ -27,16 +27,20 @@
                     android:id="@+id/uname_input"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:maxLines="1"
                     android:background="@drawable/edittext_border"
                     android:drawableLeft="@drawable/icon_user"
                     android:hint="用户名" />
+
             </android.support.design.widget.TextInputLayout>
+
 
         </android.support.percent.PercentRelativeLayout>
 
         <android.support.percent.PercentRelativeLayout
             android:id="@+id/pwd_edit"
             android:layout_width="0dp"
+            android:layout_marginTop="10dp"
             android:layout_height="0dp"
             android:layout_below="@+id/uname_edit"
             app:layout_heightPercent="30%"
