@@ -1,37 +1,64 @@
 package com.aolei.jxustnc.ordersystem.Utils;
 
+import android.content.Context;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
+
+import com.aolei.jxustnc.ordersystem.R;
+import com.aolei.jxustnc.ordersystem.entity.User;
 
 /**
+ * 注册验证数据是否合法
  * Created by aolei on 2016/4/12.
  */
-public class MyTextChangeListener implements TextWatcher {
-    private TextInputLayout mTextInputLayout;
-    private String errorInfo;
-    public MyTextChangeListener(TextInputLayout textInputLayout,String errorinfo){
+public class MyTextChangeListener implements View.OnFocusChangeListener {
+        private TextInputLayout mTextInputLayout;
+        private Context context;
+    public MyTextChangeListener(TextInputLayout textInputLayout,Context context){
         this.mTextInputLayout = textInputLayout;
-        this.errorInfo = errorinfo;
+        this.context = context;
     }
+
+    /**
+     * EditText 失去焦点监听事件
+     * @param v
+     * @param hasFocus
+     */
     @Override
-    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+    public void onFocusChange(View v, boolean hasFocus) {
+       switch (v.getId()){
+           case R.id.username:
+               if (!hasFocus){
+               }
+               break;
+           case R.id.userpwd:
+               if (!hasFocus){
+                   if (!Utils.isPassWord(mTextInputLayout.getEditText().getText().toString())){
+                       Snackbar.make(mTextInputLayout.getEditText(),"密码必须是数字和字母的组合且长度必须大于8小于16位",Snackbar.LENGTH_SHORT).show();
+                   }
+               }
+               break;
+           case R.id.userphone:
+               if (!hasFocus){
+                   if (!Utils.isMobileNumber(mTextInputLayout.getEditText().getText().toString())){
+                       Snackbar.make(mTextInputLayout.getEditText(),"您输入的手机号码不符合规范",Snackbar.LENGTH_SHORT).show();
+                   }
+               }
+               break;
+           case R.id.userdormitory:
+               if (!hasFocus){
+                   if (!Utils.isDormitoryNum(mTextInputLayout.getEditText().getText().toString())){
+                       Snackbar.make(mTextInputLayout.getEditText(),"您输入的宿舍号不存在",Snackbar.LENGTH_SHORT).show();
+                   }
+               }
+               break;
+           default:
+               break;
+       }
     }
 
-    @Override
-    public void onTextChanged(CharSequence s, int start, int before, int count) {
-        if (Utils.isMobileNumber(mTextInputLayout.getEditText().getText().toString())){
-            mTextInputLayout.setErrorEnabled(true);//是否设置错误提示信息
-            mTextInputLayout.setError(errorInfo);//设置错误提示信息
-        }else{
-            mTextInputLayout.setErrorEnabled(false);
-        }
-    }
 
-    @Override
-    public void afterTextChanged(Editable s) {
-
-
-    }
 }

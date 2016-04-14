@@ -1,5 +1,8 @@
 package com.aolei.jxustnc.ordersystem.Utils;
 
+import android.view.View;
+import android.widget.EditText;
+
 import java.util.regex.Pattern;
 
 /**
@@ -9,13 +12,14 @@ public class Utils {
     //appID
     public static final String APPID = "a488221de9e0bed51d79724389ca6212";
     //电话号码的正则表达式
-    public static final String REGEX_PHONE = "^((13[0-9])|(15[^4,\\\\D])|(18[0,5-9]))\\\\d{8}$";
+    public static final String REGEX_PHONE = "^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$";
     //密码验证正则表达式
     public static final String REGEX_PWD = "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$";
     //宿舍号的正则表达式
-    public static final String REGEX_DORMITORYNUM = "^([1-9][1-7])(([1-3][0-9])|([0][1-9]))$\n";
-    //邮箱验证正则表达式
-    public static final String REGEX_EMAIL = "\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*\n";
+    public static final String REGEX_DORMITORYNUM = "^([1-9][1-7])(([1-3][0-9])|([0][1-9]))$";
+    //判断是汉字的正则表达式,且长度在1到10之间
+    public static final String REGEX_ISCHINESE = "^[\u4E00-\u9FA5]{1,10}$";
+    //判断字符串的长度小于10
 
     /**
      * 判断参数是否符合是合法的手机号码
@@ -23,7 +27,7 @@ public class Utils {
      * @param phoneNum
      * @return 如果合法，则返回true，如果不合法，则返回false
      */
-    public static boolean isMobileNumber(String phoneNum) {
+    public static boolean isMobileNumber( String phoneNum) {
         return Pattern.matches(REGEX_PHONE, phoneNum);
     }
 
@@ -45,14 +49,6 @@ public class Utils {
      */
     public static boolean isDormitoryNum(String dormitorynum) {
         return Pattern.matches(REGEX_DORMITORYNUM, dormitorynum);
-    }
 
-    /**
-     * 判断输入的邮箱是否合法
-     * @param email
-     * @return 合法返回true，不合法返回false
-     */
-    public static boolean isEmail(String email) {
-        return Pattern.matches(REGEX_EMAIL,email);
     }
 }
