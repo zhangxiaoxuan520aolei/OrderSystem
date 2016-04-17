@@ -2,10 +2,10 @@ package com.aolei.jxustnc.ordersystem.activity;
 
 import android.app.Activity;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.util.Log;
 import android.view.View;
@@ -72,8 +72,11 @@ public class RegistActivity extends Activity implements View.OnClickListener{
                 @Override
                 public void onFailure(int i, String s) {
                     Log.d("error",s);
+
                 }
             });
+        }else{
+            Snackbar.make(mRegistButton,"亲,您打开的方式不对哦,再检查一下吧",Snackbar.LENGTH_SHORT).show();
         }
     }
 }

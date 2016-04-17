@@ -121,6 +121,10 @@ public class MainActivity extends FragmentActivity implements NavigationView.OnN
         return true;
     }
 
+    /**
+     * 选择fragment
+     * @param fragment
+     */
     private void switchFragment(Fragment fragment) {
         if (currentFragment != null) {
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
