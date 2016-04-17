@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.percent.PercentRelativeLayout
+        android:id="@+id/Image_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_heightPercent="30%"
+        app:layout_widthPercent="30%">
+
+        <ImageView
+            android:id="@+id/food_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/ic_launcher" />
+    </android.support.percent.PercentRelativeLayout>
+
+    <TextView
+        android:id="@+id/food_name"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_toRightOf="@+id/Image_layout"
+        android:gravity="center_horizontal"
+        android:text="鸡扒饭"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_heightPercent="10%"
+        app:layout_widthPercent="20%" />
+
+    <TextView
+        android:id="@+id/food_describe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/food_name"
+        android:layout_toRightOf="@+id/Image_layout"
+        android:text="好吃的黄焖鸡"
+        android:textSize="20sp"
+        app:layout_heightPercent="10%"
+        app:layout_widthPercent="30%" />
+
+    <TextView
+        android:id="@+id/food_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/food_describe"
+        android:layout_toRightOf="@+id/Image_layout"
+        android:text="￥5.00"
+        android:textSize="20sp"
+        app:layout_heightPercent="5%" />
+
+    <android.support.percent.PercentRelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_alignParentRight="true"
+        app:layout_heightPercent="25%"
+        app:layout_widthPercent="40%">
+
+        <TextView android:id="@+id/food_canteen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="第一食堂"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            app:layout_heightPercent="50%">
+
+            <TextView
+                android:id="@+id/food_sale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:gravity="right"
+                android:text="已售"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/food_sale_num"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/food_sale"
+                android:gravity="right"
+                android:text="1"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_toRightOf="@+id/food_sale_num"
+                android:gravity="right"
+                android:text="笔"
+                android:textSize="20sp" />
+        </RelativeLayout>
+    </android.support.percent.PercentRelativeLayout>
+</android.support.percent.PercentRelativeLayout>
