@@ -2,8 +2,10 @@ package com.aolei.jxustnc.ordersystem.fragment;
 
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +27,22 @@ public class HomeFragment extends Fragment {
     private List<FoodEntity> data_list;
     private View view;
     private ListView listView_home;
-
+    private SwipeRefreshLayout mSwiperRefreshLayout;
+    private FoodEntity foodEntity;
+    private static final int REFRESH_COMPLETE = 0X110;
+    /*private Handler mHandler = new Handler(){
+      public void handleMessage(android.os.Message msg){
+          switch (msg.what){
+              case REFRESH_COMPLETE:
+                  for (int i = 0; i < 20; i++) {
+                      foodEntity = new FoodEntity();
+                      foodEntity.setDetail("很好吃的北京烤鸭");
+                      data_list.add(foodEntity);
+                  }
+                  break;
+          }
+      }
+    };*/
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -46,8 +63,9 @@ public class HomeFragment extends Fragment {
 
     private void initView() {
         listView_home = (ListView) view.findViewById(R.id.listview_home_fg);
+        //mSwiperRefreshLayout.setOnRefreshListener(this);
         data_list = new ArrayList<>();
-        FoodEntity foodEntity;
+        //FoodEntity foodEntity;
         for (int i = 0; i < 20; i++) {
             foodEntity = new FoodEntity();
             foodEntity.setDetail("很好吃的北京烤鸭");
@@ -60,4 +78,9 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+
+   /* @Override
+    public void onRefresh() {
+        //mHandler.sendEmptyMessageDelayed(REFRESH_COMPLETE,2000);
+    }*/
 }
