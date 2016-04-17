@@ -18,6 +18,7 @@ import com.aolei.jxustnc.ordersystem.R;
 import com.aolei.jxustnc.ordersystem.fragment.CanteenFragment1;
 import com.aolei.jxustnc.ordersystem.fragment.CanteenFragment2;
 import com.aolei.jxustnc.ordersystem.fragment.CanteenFragment3;
+import com.aolei.jxustnc.ordersystem.fragment.HomeFragment;
 
 public class MainActivity extends FragmentActivity implements NavigationView.OnNavigationItemSelectedListener {
     private Toolbar toolbar;
@@ -42,6 +43,7 @@ public class MainActivity extends FragmentActivity implements NavigationView.OnN
         drawer.setDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setCheckedItem(R.id.nav_home);
     }
 
     /**
@@ -50,13 +52,13 @@ public class MainActivity extends FragmentActivity implements NavigationView.OnN
     private void initView() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitleTextColor(Color.WHITE);
-        toolbar.setTitle("Jxust Canteen");
+        toolbar.setTitle("推荐");
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         //显示第一个Fragment
-        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new CanteenFragment1()).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new HomeFragment()).commit();
     }
 
     /**
@@ -99,14 +101,19 @@ public class MainActivity extends FragmentActivity implements NavigationView.OnN
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
-        if (id == R.id.nav_canteen1) {
+        if (id == R.id.nav_home) {
+            toolbar.setTitle("主页");
+            switchFragment(new HomeFragment());
+        } else if (id == R.id.nav_canteen1) {
+            toolbar.setTitle("第一食堂");
             switchFragment(new CanteenFragment1());
             // Handle the camera action
         } else if (id == R.id.nav_canteen2) {
+            toolbar.setTitle("第二食堂");
             switchFragment(new CanteenFragment2());
 
         } else if (id == R.id.nav_canteen3) {
+            toolbar.setTitle("第三食堂");
             switchFragment(new CanteenFragment3());
 
         } else if (id == R.id.nav_manage) {
