@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="100dp"
+    android:background="@drawable/item_card_background_selector"
     android:descendantFocusability="beforeDescendants"
-     android:paddingLeft="10dp"
+    android:paddingLeft="10dp"
     android:paddingRight="10dp">
 
     <android.support.percent.PercentRelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/item_card_background_selector"
         android:descendantFocusability="afterDescendants"
         android:gravity="center_vertical">
 

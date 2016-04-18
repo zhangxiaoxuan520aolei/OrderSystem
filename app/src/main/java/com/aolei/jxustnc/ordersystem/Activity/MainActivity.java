@@ -30,7 +30,6 @@ public class MainActivity extends FragmentActivity implements NavigationView.OnN
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
         initView();
         initEvent();
@@ -58,7 +57,9 @@ public class MainActivity extends FragmentActivity implements NavigationView.OnN
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         //显示第一个Fragment
-        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new HomeFragment()).commit();
+        HomeFragment homeFragment = new HomeFragment();
+        currentFragment = homeFragment;
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, homeFragment).commit();
     }
 
     /**
