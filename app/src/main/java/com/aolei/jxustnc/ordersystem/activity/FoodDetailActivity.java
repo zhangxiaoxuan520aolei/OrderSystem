@@ -1,11 +1,16 @@
 package com.aolei.jxustnc.ordersystem.activity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -13,9 +18,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.aolei.jxustnc.ordersystem.R;
+import com.aolei.jxustnc.ordersystem.entity.FoodEntity;
+import com.aolei.jxustnc.ordersystem.util.DividerItemDecoration;
 import com.aolei.jxustnc.ordersystem.util.ImageAdapter;
+import com.aolei.jxustnc.ordersystem.util.RecyclerViewCommonAdapter;
+import com.aolei.jxustnc.ordersystem.util.RecyclerViewViewHolder;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -33,6 +43,7 @@ public class FoodDetailActivity extends AppCompatActivity {
     private LinearLayout layout_image_indicator;
     private int[] images = {R.mipmap.cheese_2, R.mipmap.cheese_3, R.mipmap.cheese_2};
     private ImageView[] image_indicator;
+    private RecyclerView food_detail_recyclerview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +103,30 @@ public class FoodDetailActivity extends AppCompatActivity {
         viewPager.setCurrentItem(Integer.MAX_VALUE / 2);//默认在中间，使用户看不到边界
         //开始轮播效果
         handler.sendEmptyMessageDelayed(ImageHandler.MSG_UPDATE_IMAGE, ImageHandler.MSG_DELAY);
+        setRecyclerView();
+    }
+
+    private void setRecyclerView() {
+        List<FoodEntity> data_list = new ArrayList<>();
+        FoodEntity foodEntity;
+        for (int i = 0; i < 20; i++) {
+            foodEntity = new FoodEntity();
+            foodEntity.setDetail("NewOrin");
+            data_list.add(foodEntity);
+        }
+        food_detail_recyclerview = (RecyclerView) findViewById(R.id.food_detail_recyclerview);
+        food_detail_recyclerview.setAdapter(new RecyclerViewCommonAdapter<FoodEntity>(this, R.layout.item_food_comment, data_list) {
+            @Override
+            public void convert(RecyclerViewViewHolder holder, FoodEntity foodEntity) {
+                TextView tv = holder.getView(R.id.tv_comment_name);
+                tv.setText(foodEntity.getDetail());
+            }
+        });
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        food_detail_recyclerview.setLayoutManager(linearLayoutManager);
+        food_detail_recyclerview.setNestedScrollingEnabled(false);
+        food_detail_recyclerview.setItemAnimator(new DefaultItemAnimator());
+        food_detail_recyclerview.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
     }
 
     /**
@@ -124,9 +159,24 @@ public class FoodDetailActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
             case R.id.action_settings:
-            break;
+                break;
+            case android.R.id.home:
+                finish();
+                break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void doClick(View view) {
+        switch (view.getId()) {
+            case R.id.food_layout_call:
+                //拨打电话
+                Uri uri = Uri.parse("tel:18907975986");
+                startActivity(new Intent(Intent.ACTION_DIAL, uri));
+                break;
+            case R.id.food_layout_canteen:
+                break;
+        }
     }
 
     private static class ImageHandler extends Handler {

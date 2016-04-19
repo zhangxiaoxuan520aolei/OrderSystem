@@ -14,8 +14,8 @@ import android.widget.ListView;
 import com.aolei.jxustnc.ordersystem.R;
 import com.aolei.jxustnc.ordersystem.activity.FoodDetailActivity;
 import com.aolei.jxustnc.ordersystem.entity.FoodEntity;
-import com.aolei.jxustnc.ordersystem.util.CommonAdapter;
-import com.aolei.jxustnc.ordersystem.util.ViewHolder;
+import com.aolei.jxustnc.ordersystem.util.ListViewCommonAdapter;
+import com.aolei.jxustnc.ordersystem.util.ListViewViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,9 +56,9 @@ public class HomeFragment extends Fragment {
             foodEntity.setDetail("很好吃的北京烤鸭");
             data_list.add(foodEntity);
         }
-        listView_home.setAdapter(new CommonAdapter<FoodEntity>(getActivity(), data_list, R.layout.item_home_listview) {
+        listView_home.setAdapter(new ListViewCommonAdapter<FoodEntity>(getActivity(), data_list, R.layout.item_home_listview) {
             @Override
-            public void convert(ViewHolder holder, FoodEntity foodEntity) {
+            public void convert(ListViewViewHolder holder, FoodEntity foodEntity) {
                 holder.setText(R.id.tv_detail_item_home, foodEntity.getDetail());
             }
         });

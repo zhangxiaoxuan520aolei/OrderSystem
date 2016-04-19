@@ -11,6 +11,7 @@
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="256dp"
+        android:descendantFocusability="beforeDescendants"
         android:fitsSystemWindows="true"
         android:theme="@style/AppTheme.AppBarOverlay">
 
@@ -43,7 +44,7 @@
                     android:layout_marginRight="0dp"
                     android:orientation="horizontal"
                     app:layout_marginBottomPercent="15%"
-                    app:layout_marginRightPercent="5%"/>
+                    app:layout_marginRightPercent="5%" />
 
             </android.support.percent.PercentRelativeLayout>
 

@@ -12,14 +12,14 @@ import android.widget.BaseAdapter;
 
 import java.util.List;
 
-public abstract class CommonAdapter<T> extends BaseAdapter {
+public abstract class ListViewCommonAdapter<T> extends BaseAdapter {
 
     public Context mContext;
     public List<T> mDatas;
     public LayoutInflater mInflater;
     private int mLayoutId;
 
-    public CommonAdapter(Context context, List<T> datas, int layoutId) {
+    public ListViewCommonAdapter(Context context, List<T> datas, int layoutId) {
         this.mContext = context;
         this.mDatas = datas;
         this.mLayoutId = layoutId;
@@ -39,12 +39,12 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder = ViewHolder.get(mContext, convertView, parent,
+        ListViewViewHolder holder = ListViewViewHolder.get(mContext, convertView, parent,
                 mLayoutId, position);
         convert(holder, getItem(position));
 
         return holder.getConvertView();
     }
 
-    public abstract void convert(ViewHolder holder, T t);
+    public abstract void convert(ListViewViewHolder holder, T t);
 }
