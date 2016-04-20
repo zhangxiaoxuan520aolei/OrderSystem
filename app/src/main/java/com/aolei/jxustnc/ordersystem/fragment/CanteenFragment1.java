@@ -12,9 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.aolei.jxustnc.ordersystem.R;
-import com.aolei.jxustnc.ordersystem.utils.SpacesItemDecoration;
 import com.aolei.jxustnc.ordersystem.adapter.MyRecyleViewAdapter;
 import com.aolei.jxustnc.ordersystem.entity.Store;
+import com.aolei.jxustnc.ordersystem.utils.SpacesItemDecoration;
 
 import java.util.List;
 
