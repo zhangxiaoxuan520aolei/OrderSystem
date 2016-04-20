@@ -1,6 +1,7 @@
 package com.aolei.jxustnc.ordersystem.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -9,9 +10,11 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.aolei.jxustnc.ordersystem.R;
+import com.aolei.jxustnc.ordersystem.activity.FoodDetailActivity;
 import com.aolei.jxustnc.ordersystem.entity.FoodEntity;
 import com.aolei.jxustnc.ordersystem.util.CommonAdapter;
 import com.aolei.jxustnc.ordersystem.util.ViewHolder;
@@ -75,6 +78,12 @@ public class HomeFragment extends Fragment {
             @Override
             public void convert(ViewHolder holder, FoodEntity foodEntity) {
                 holder.setText(R.id.tv_detail_item_home, foodEntity.getDetail());
+            }
+        });
+        listView_home.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                startActivity(new Intent(getActivity(), FoodDetailActivity.class));
             }
         });
     }
