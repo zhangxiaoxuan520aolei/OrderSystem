@@ -41,7 +41,7 @@ public class CanteenFragment1 extends Fragment{
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initData();
+        //initData();
         mRecyleView = (RecyclerView) view.findViewById(R.id.show_list);
         mRecyleView.setItemAnimator(new DefaultItemAnimator());
         //设置RecyleView布局管理器为2列垂直布局
@@ -49,7 +49,7 @@ public class CanteenFragment1 extends Fragment{
         myRecyleViewAdapter = new MyRecyleViewAdapter(getContext(),lists);
         mRecyleView.setAdapter(myRecyleViewAdapter);
 
-        SpacesItemDecoration decoration = new SpacesItemDecoration(16);
+        SpacesItemDecoration decoration = new com.aolei.jxustnc.ordersystem.utils.SpacesItemDecoration(16);
         mRecyleView.addItemDecoration(decoration);
     }
     //初始化数据
