@@ -1,25 +1,27 @@
 package com.aolei.jxustnc.ordersystem.entity;
 
-/**
+import cn.bmob.v3.BmobObject;
+
+/** 店铺的实体类
  * Created by aolei on 2016/4/17.
  */
-public class Store {
-    private Integer imgId;
-    private String storeDescribe;
+public class Store extends BmobObject{
+    private String store_pic;
+    private String store_des;
 
-    public Integer getImgId() {
-        return imgId;
+    public String getStore_pic() {
+        return store_pic;
     }
 
-    public void setImgId(Integer imgId) {
-        this.imgId = imgId;
+    public void setStore_pic(String store_pic) {
+        this.store_pic = store_pic;
     }
 
-    public String getStoreDescribe() {
-        return storeDescribe;
+    public String getStore_des() {
+        return store_des;
     }
 
-    public void setStoreDescribe(String storeDescribe) {
-        this.storeDescribe = storeDescribe;
+    public void setStore_des(String store_des) {
+        this.store_des = store_des;
     }
 }

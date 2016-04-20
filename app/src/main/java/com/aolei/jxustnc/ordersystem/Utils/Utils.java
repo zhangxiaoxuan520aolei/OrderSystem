@@ -1,7 +1,4 @@
-package com.aolei.jxustnc.ordersystem.Utils;
-
-import android.view.View;
-import android.widget.EditText;
+package com.aolei.jxustnc.ordersystem.utils;
 
 import java.util.regex.Pattern;
 

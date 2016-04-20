@@ -1,14 +1,11 @@
-package com.aolei.jxustnc.ordersystem.Utils;
+package com.aolei.jxustnc.ordersystem.utils;
 
 import android.content.Context;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 
 import com.aolei.jxustnc.ordersystem.R;
-import com.aolei.jxustnc.ordersystem.entity.User;
 
 /**
  * 注册验证数据是否合法

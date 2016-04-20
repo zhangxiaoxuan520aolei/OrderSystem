@@ -13,8 +13,8 @@ import android.view.Window;
 import android.widget.Button;
 
 import com.aolei.jxustnc.ordersystem.R;
-import com.aolei.jxustnc.ordersystem.Utils.MyTextChangeListener;
-import com.aolei.jxustnc.ordersystem.Utils.Utils;
+import com.aolei.jxustnc.ordersystem.utils.MyTextChangeListener;
+import com.aolei.jxustnc.ordersystem.utils.Utils;
 import com.aolei.jxustnc.ordersystem.entity.User;
 
 import cn.bmob.v3.Bmob;

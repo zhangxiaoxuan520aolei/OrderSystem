@@ -6,9 +6,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.aolei.jxustnc.ordersystem.R;
+import com.aolei.jxustnc.ordersystem.entity.Store;
+import com.aolei.jxustnc.ordersystem.fragment.CanteenFragment1;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,19 +21,18 @@ import java.util.List;
  * Created by aolei on 2016/4/17.
  */
 public class MyRecyleViewAdapter extends RecyclerView.Adapter<MyRecyleViewAdapter.MyViewHolder>{
-    private List<String> lists;
+    private List<Store> lists;
     private Context context;
     private List<Integer> heights;
 
-    public MyRecyleViewAdapter(Context context, List<String> list){
+    public MyRecyleViewAdapter(Context context, List<Store> list){
         this.context = context;
         this.lists = list;
         getRandoomHeight(this.lists);
     }
-    private void getRandoomHeight(List<String> lists){
+    private void getRandoomHeight(List<Store> lists){
         heights = new ArrayList<>();
         for (int i = 0; i < lists.size();i++){
-            //heights.add((int)(200 + Math.random() * 400));
             heights.add(200);
         }
     }
@@ -45,9 +48,11 @@ public class MyRecyleViewAdapter extends RecyclerView.Adapter<MyRecyleViewAdapte
         ViewGroup.LayoutParams params = holder.itemView.getLayoutParams();//得到Item的layoutParams布局参数
         params.height = heights.get(position);
         holder.itemView.setLayoutParams(params);
-        //绑定数据
-        holder.mTv.setText(lists.get(position));
-
+        //绑定数据 暂时没有数据
+        //holder.mTv.setText(lists.get(position).getStoreDescribe());
+        //holder.mImage.setImageResource(lists.get(position).getImgId());
+        holder.mTv.setText(lists.get(position).getStore_des());
+        Glide.with(context).load(lists.get(position).getStore_pic()).centerCrop().into(holder.mImage);
     }
 
     @Override
@@ -57,9 +62,11 @@ public class MyRecyleViewAdapter extends RecyclerView.Adapter<MyRecyleViewAdapte
 
     class MyViewHolder extends RecyclerView.ViewHolder{
         TextView mTv;
+        ImageView mImage;
         public MyViewHolder(View itemView) {
             super(itemView);
-            mTv = (TextView) itemView.findViewById(R.id.textView);
+            mTv = (TextView) itemView.findViewById(R.id.store_dec);
+            mImage = (ImageView) itemView.findViewById(R.id.store_pic);
         }
     }
 }

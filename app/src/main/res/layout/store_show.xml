@@ -1,11 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.percent.PercentRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#003472"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#44ff0000"
-    android:orientation="vertical">
-    <TextView android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"/>
-</LinearLayout>
+    android:layout_height="match_parent">
+
+    <android.support.percent.PercentRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView android:id="@+id/store_pic"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@mipmap/ic_launcher"
+            app:layout_widthPercent="100%"
+            app:layout_heightPercent="50%"/>
+        <TextView android:id="@+id/store_dec"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_below="@+id/store_pic"
+            app:layout_heightPercent="40%"
+            app:layout_widthPercent="100%"
+            android:text="222"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            />
+    </android.support.percent.PercentRelativeLayout>
+</android.support.percent.PercentRelativeLayout>
