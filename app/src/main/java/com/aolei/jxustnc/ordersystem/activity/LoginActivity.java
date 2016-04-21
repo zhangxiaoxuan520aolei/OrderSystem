@@ -12,7 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.aolei.jxustnc.ordersystem.R;
-import com.aolei.jxustnc.ordersystem.utils.Utils;
+import com.aolei.jxustnc.ordersystem.util.Utils;
 import com.aolei.jxustnc.ordersystem.entity.User;
 
 import cn.bmob.v3.Bmob;

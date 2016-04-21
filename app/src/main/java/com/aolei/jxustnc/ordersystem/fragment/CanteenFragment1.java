@@ -3,8 +3,6 @@ package com.aolei.jxustnc.ordersystem.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,7 +12,6 @@ import android.view.ViewGroup;
 import com.aolei.jxustnc.ordersystem.R;
 import com.aolei.jxustnc.ordersystem.adapter.MyRecyleViewAdapter;
 import com.aolei.jxustnc.ordersystem.entity.Store;
-import com.aolei.jxustnc.ordersystem.utils.SpacesItemDecoration;
 
 import java.util.List;
 
@@ -42,15 +39,15 @@ public class CanteenFragment1 extends Fragment{
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         //initData();
-        mRecyleView = (RecyclerView) view.findViewById(R.id.show_list);
+        /*mRecyleView = (RecyclerView) view.findViewById(R.id.show_list);
         mRecyleView.setItemAnimator(new DefaultItemAnimator());
         //设置RecyleView布局管理器为2列垂直布局
         mRecyleView.setLayoutManager(new GridLayoutManager(getContext(),2));
         myRecyleViewAdapter = new MyRecyleViewAdapter(getContext(),lists);
         mRecyleView.setAdapter(myRecyleViewAdapter);
 
-        SpacesItemDecoration decoration = new com.aolei.jxustnc.ordersystem.utils.SpacesItemDecoration(16);
-        mRecyleView.addItemDecoration(decoration);
+        SpacesItemDecoration decoration = new SpacesItemDecoration(16);
+        mRecyleView.addItemDecoration(decoration);*/
     }
     //初始化数据
     private void initData(){

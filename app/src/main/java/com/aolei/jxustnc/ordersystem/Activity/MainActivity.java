@@ -12,7 +12,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.Window;
 
 import com.aolei.jxustnc.ordersystem.R;
 import com.aolei.jxustnc.ordersystem.fragment.CanteenFragment1;
