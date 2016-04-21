@@ -8,6 +8,8 @@ import cn.bmob.v3.BmobObject;
 public class Store extends BmobObject{
     private String store_pic;
     private String store_des;
+    private String store_name;
+    private String belong_cateen;
 
     public String getStore_pic() {
         return store_pic;
@@ -23,5 +25,21 @@ public class Store extends BmobObject{
 
     public void setStore_des(String store_des) {
         this.store_des = store_des;
+    }
+
+    public String getStore_name() {
+        return store_name;
+    }
+
+    public void setStore_name(String store_name) {
+        this.store_name = store_name;
+    }
+
+    public String getBelong_cateen() {
+        return belong_cateen;
+    }
+
+    public void setBelong_cateen(String belong_cateen) {
+        this.belong_cateen = belong_cateen;
     }
 }
