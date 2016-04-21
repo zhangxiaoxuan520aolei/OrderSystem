@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -44,6 +45,9 @@ public class FoodDetailActivity extends AppCompatActivity {
         setRecyclerView();
     }
 
+    /**
+     * 设定RecyclerView
+     */
     private void setRecyclerView() {
         List<FoodEntity> data_list = new ArrayList<>();
         FoodEntity foodEntity;
@@ -66,5 +70,18 @@ public class FoodDetailActivity extends AppCompatActivity {
         food_detail_recyclerview.setNestedScrollingEnabled(false);
         food_detail_recyclerview.setItemAnimator(new DefaultItemAnimator());
         food_detail_recyclerview.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
