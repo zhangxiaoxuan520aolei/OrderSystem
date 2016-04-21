@@ -12,9 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.aolei.jxustnc.ordersystem.R;
+import com.aolei.jxustnc.ordersystem.adapter.MyRecyleViewAdapter;
 import com.aolei.jxustnc.ordersystem.entity.Store;
-import com.aolei.jxustnc.ordersystem.util.MyRecyleViewAdapter;
-import com.aolei.jxustnc.ordersystem.util.SpacesItemDecoration;
+import com.aolei.jxustnc.ordersystem.utils.SpacesItemDecoration;
 
 import java.util.List;
 
@@ -27,26 +27,33 @@ import cn.bmob.v3.listener.SQLQueryListener;
  * 第一食堂Fragment
  * Created by NewOr on 2016/4/10.
  */
-public class CanteenFragment1 extends Fragment {
+public class CanteenFragment1 extends Fragment{
     private RecyclerView mRecyleView;
     private MyRecyleViewAdapter myRecyleViewAdapter;
     private List<Store> lists;
     View view;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_canteen, container, false);
+         view =  inflater.inflate(R.layout.fragment_canteen, container, false);
         return view;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initData();
-    }
+        //initData();
+        mRecyleView = (RecyclerView) view.findViewById(R.id.show_list);
+        mRecyleView.setItemAnimator(new DefaultItemAnimator());
+        //设置RecyleView布局管理器为2列垂直布局
+        mRecyleView.setLayoutManager(new GridLayoutManager(getContext(),2));
+        myRecyleViewAdapter = new MyRecyleViewAdapter(getContext(),lists);
+        mRecyleView.setAdapter(myRecyleViewAdapter);
 
+        SpacesItemDecoration decoration = new com.aolei.jxustnc.ordersystem.utils.SpacesItemDecoration(16);
+        mRecyleView.addItemDecoration(decoration);
+    }
     //初始化数据
-    private void initData() {
+    private void initData(){
         String bql = "select * from Store";
         BmobQuery<Store> queryResult = new BmobQuery<Store>();
         queryResult.setSQL(bql);
@@ -54,28 +61,18 @@ public class CanteenFragment1 extends Fragment {
 
             @Override
             public void done(BmobQueryResult<Store> bmobQueryResult, BmobException e) {
-                if (e == null) {
+                if (e == null){
                     List<Store> listResult = bmobQueryResult.getResults();
-                    if (!listResult.isEmpty() && listResult.size() > 0) {
-                        for (int i = 0; i < listResult.size(); i++) {
+                    if (!listResult.isEmpty() && listResult.size() > 0){
+                        for (int i = 0; i < listResult.size(); i++){
                             Store store = new Store();
                             store.setStore_pic(listResult.get(i).getStore_pic());
                             store.setStore_des(listResult.get(i).getStore_des());
                             lists.add(store);
-
-                            mRecyleView = (RecyclerView) view.findViewById(R.id.show_list);
-                            mRecyleView.setItemAnimator(new DefaultItemAnimator());
-                            //设置RecyleView布局管理器为2列垂直布局
-                            mRecyleView.setLayoutManager(new GridLayoutManager(getContext(), 2));
-                            myRecyleViewAdapter = new MyRecyleViewAdapter(getContext(), lists);
-                            mRecyleView.setAdapter(myRecyleViewAdapter);
-
-                            SpacesItemDecoration decoration = new SpacesItemDecoration(16);
-                            mRecyleView.addItemDecoration(decoration);
                         }
                     }
-                } else {
-                    Log.d("Error", e + "");
+                }else{
+                    Log.d("Error",e+"");
                 }
             }
         });

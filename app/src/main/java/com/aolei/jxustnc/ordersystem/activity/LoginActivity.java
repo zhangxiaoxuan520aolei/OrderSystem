@@ -12,8 +12,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.aolei.jxustnc.ordersystem.R;
+import com.aolei.jxustnc.ordersystem.utils.Utils;
 import com.aolei.jxustnc.ordersystem.entity.User;
-import com.aolei.jxustnc.ordersystem.util.CheckUtils;
 
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.listener.SaveListener;
@@ -28,7 +28,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        Bmob.initialize(this, CheckUtils.APPID);
+        Bmob.initialize(this, Utils.APPID);
         setContentView(R.layout.activity_login);
         super.onCreate(savedInstanceState);
         initView();
@@ -68,7 +68,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                     }
                     @Override
                     public void onFailure(int i, String s) {
-                        Snackbar.make(mLogin,"账号或密码不正确", Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(mLogin,"账号或密码不正确",Snackbar.LENGTH_LONG).show();
                     }
                 });
                 break;
