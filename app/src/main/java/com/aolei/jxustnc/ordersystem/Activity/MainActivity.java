@@ -30,7 +30,6 @@ public class MainActivity extends FragmentActivity implements NavigationView.OnN
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
         initView();
         initEvent();
@@ -60,7 +59,7 @@ public class MainActivity extends FragmentActivity implements NavigationView.OnN
         //显示第一个Fragment
         HomeFragment homeFragment = new HomeFragment();
         currentFragment = homeFragment;
-        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new HomeFragment()).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, homeFragment).commit();
     }
 
     /**
@@ -130,10 +129,6 @@ public class MainActivity extends FragmentActivity implements NavigationView.OnN
         return true;
     }
 
-    /**
-     * 选择fragment
-     * @param fragment
-     */
     private void switchFragment(Fragment fragment) {
         if (currentFragment != null) {
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();

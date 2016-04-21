@@ -1,4 +1,4 @@
-package com.aolei.jxustnc.ordersystem.utils;
+package com.aolei.jxustnc.ordersystem.util;
 
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;

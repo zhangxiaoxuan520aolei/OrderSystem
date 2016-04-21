@@ -7,14 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class ViewHolder {
+public class ListViewViewHolder {
 
 	private SparseArray<View> mViews;
 	private int mPostion;
 	private View mConvertView;
 
-	public ViewHolder(Context context, ViewGroup parent, int layoutId,
-			int position) {
+	public ListViewViewHolder(Context context, ViewGroup parent, int layoutId,
+							  int position) {
 		this.mPostion = position;
 		this.mViews = new SparseArray<View>();
 		mConvertView = LayoutInflater.from(context).inflate(layoutId, parent,
@@ -23,12 +23,12 @@ public class ViewHolder {
 	}
 
 	// 入口方法，判断ViewHolder是new出来的，还是getTag出来的
-	public static ViewHolder get(Context context, View convertView,
-			ViewGroup parent, int layoutId, int position) {
+	public static ListViewViewHolder get(Context context, View convertView,
+										 ViewGroup parent, int layoutId, int position) {
 		if (convertView == null) {
-			return new ViewHolder(context, parent, layoutId, position);
+			return new ListViewViewHolder(context, parent, layoutId, position);
 		} else {
-			ViewHolder holder = (ViewHolder) convertView.getTag();
+			ListViewViewHolder holder = (ListViewViewHolder) convertView.getTag();
 			holder.mPostion = position;
 			return holder;
 		}
@@ -58,7 +58,7 @@ public class ViewHolder {
  * @param text
  * @return
  */
-	public ViewHolder setText(int viewId, String text) {
+	public ListViewViewHolder setText(int viewId, String text) {
 		TextView tv = getView(viewId);
 		tv.setText(text);
 		return this;
