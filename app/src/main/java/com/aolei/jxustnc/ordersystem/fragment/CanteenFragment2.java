@@ -1,5 +1,6 @@
 package com.aolei.jxustnc.ordersystem.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,10 +15,13 @@ import android.view.ViewGroup;
 import com.aolei.jxustnc.ordersystem.R;
 import com.aolei.jxustnc.ordersystem.adapter.MyRecyleViewAdapter;
 import com.aolei.jxustnc.ordersystem.entity.Store;
+import com.aolei.jxustnc.ordersystem.util.OnRecyclerViewItemClickListener;
 import com.aolei.jxustnc.ordersystem.util.SpacesItemDecoration;
+import com.aolei.jxustnc.ordersystem.util.Utils;
 
 import java.util.List;
 
+import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.listener.FindListener;
 
@@ -25,7 +29,7 @@ import cn.bmob.v3.listener.FindListener;
  * 第二食堂Fragment
  * Created by NewOr on 2016/4/10.
  */
-public class CanteenFragment2 extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
+public class CanteenFragment2 extends Fragment implements SwipeRefreshLayout.OnRefreshListener,OnRecyclerViewItemClickListener {
     private RecyclerView mRecyleView;
     private MyRecyleViewAdapter myRecyleViewAdapter;
     private List<Store> lists;
@@ -40,6 +44,7 @@ public class CanteenFragment2 extends Fragment implements SwipeRefreshLayout.OnR
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        Bmob.initialize(getContext(), Utils.APPID);
         super.onActivityCreated(savedInstanceState);
         mSwipeRefreshLayout = (SwipeRefreshLayout)view.findViewById(R.id.CanteenFragment);
         mSwipeRefreshLayout.setOnRefreshListener(this);
@@ -79,11 +84,28 @@ public class CanteenFragment2 extends Fragment implements SwipeRefreshLayout.OnR
     private void setNetData() {
         myRecyleViewAdapter = new MyRecyleViewAdapter(getContext(), lists);
         mRecyleView.setAdapter(myRecyleViewAdapter);
+        //Item点击监听事件
+        myRecyleViewAdapter.setOnItemClickListener(this);
         mSwipeRefreshLayout.setRefreshing(false);
     }
 
+    /**
+     * 下拉刷新监听事件
+     */
     @Override
     public void onRefresh() {
         getNetData();
+    }
+
+    /**
+     * Item点击监听事件
+     * @param view
+     * @param store
+     */
+    @Override
+    public void onItemClick(View view, Store store) {
+        /*Intent mIntent = new Intent(getContext(), ShowFoodActivity.class);
+        mIntent.putExtra("store_info",store);
+        startActivity(mIntent);*/
     }
 }

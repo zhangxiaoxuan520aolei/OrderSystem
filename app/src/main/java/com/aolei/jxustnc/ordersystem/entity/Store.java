@@ -1,11 +1,13 @@
 package com.aolei.jxustnc.ordersystem.entity;
 
+import java.io.Serializable;
+
 import cn.bmob.v3.BmobObject;
 
 /** 店铺的实体类
  * Created by aolei on 2016/4/17.
  */
-public class Store extends BmobObject{
+public class Store extends BmobObject implements Serializable{
     private String store_pic;
     private String store_des;
     private String store_name;
