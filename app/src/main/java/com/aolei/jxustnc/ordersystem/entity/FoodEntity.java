@@ -1,16 +1,21 @@
 package com.aolei.jxustnc.ordersystem.entity;
 
+import cn.bmob.v3.BmobObject;
+
 /**
  * 商店食物实体类
  * Created by NewOr on 2016/4/11.
  */
-public class FoodEntity {
+public class FoodEntity extends BmobObject {
     private String detail;//食物名称
     private String canteen;//食堂
     private String shop_name;//商店名称
     private String price;//售价
     private String sold_count;//销售数量
 
+    public FoodEntity(){
+        this.setTableName("Food");
+    }
     public String getDetail() {
         return detail;
     }

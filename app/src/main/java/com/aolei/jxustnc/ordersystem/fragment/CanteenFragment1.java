@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.aolei.jxustnc.ordersystem.R;
+import com.aolei.jxustnc.ordersystem.activity.ShowFoodActivity;
 import com.aolei.jxustnc.ordersystem.adapter.MyRecyleViewAdapter;
 import com.aolei.jxustnc.ordersystem.entity.Store;
 import com.aolei.jxustnc.ordersystem.util.OnRecyclerViewItemClickListener;
@@ -104,8 +105,8 @@ public class CanteenFragment1 extends Fragment implements SwipeRefreshLayout.OnR
      */
     @Override
     public void onItemClick(View view, Store store) {
-        /*Intent mIntent = new Intent(getContext(), ShowFoodActivity.class);
+        Intent mIntent = new Intent(getContext(), ShowFoodActivity.class);
         mIntent.putExtra("store_info",store);
-        startActivity(mIntent);*/
+        startActivity(mIntent);
     }
 }

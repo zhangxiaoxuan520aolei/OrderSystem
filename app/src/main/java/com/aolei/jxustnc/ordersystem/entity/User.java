@@ -9,7 +9,9 @@ public class User extends BmobUser {
 
     private String trueName;
     private String dormitoryNumber;
-
+    public User(){
+        this.setTableName("_User");
+    }
     public String getTrueName() {
         return trueName;
     }
