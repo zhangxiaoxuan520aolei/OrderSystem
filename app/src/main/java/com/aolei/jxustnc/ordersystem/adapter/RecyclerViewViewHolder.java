@@ -1,4 +1,4 @@
-package com.aolei.jxustnc.ordersystem.util;
+package com.aolei.jxustnc.ordersystem.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -6,6 +6,7 @@ import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 /**
  * RecyclerView通用ViewHolder
@@ -39,20 +40,48 @@ public class RecyclerViewViewHolder extends RecyclerView.ViewHolder {
         return holder;
     }
 
+    public View getConvertView() {
+        return mConvertView;
+    }
+
     /**
      * 通过viewId获取控件
      *
      * @param viewId
      * @return
      */
-    public <T extends View> T getView(int viewId)
-    {
+    public <T extends View> T getView(int viewId) {
         View view = mViews.get(viewId);
-        if (view == null)
-        {
+        if (view == null) {
             view = mConvertView.findViewById(viewId);
             mViews.put(viewId, view);
         }
         return (T) view;
+    }
+
+    /**
+     * 设置TextView
+     *
+     * @param viewId
+     * @param text
+     * @return
+     */
+    public RecyclerViewViewHolder setTextView(int viewId, String text) {
+        TextView tv = getView(viewId);
+        tv.setText(text);
+        return this;
+    }
+
+    /**
+     * 设置监听事件
+     *
+     * @param viewId
+     * @param listener
+     * @return
+     */
+    public RecyclerViewViewHolder setOnClickListener(int viewId, View.OnClickListener listener) {
+        View view = getView(viewId);
+        view.setOnClickListener(listener);
+        return this;
     }
 }

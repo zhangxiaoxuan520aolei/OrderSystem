@@ -1,4 +1,4 @@
-package com.aolei.jxustnc.ordersystem.util;
+package com.aolei.jxustnc.ordersystem.adapter;
 
 /**
  * ListView万能适配器

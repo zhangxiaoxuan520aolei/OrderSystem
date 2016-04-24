@@ -1,18 +1,23 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#e2e4fe"
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
-    android:background="#e2e4fe"
     tools:context="com.aolei.jxustnc.ordersystem.fragment.HomeFragment">
 
-    <ListView
-        android:id="@+id/listview_home_fg"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/home_swipe_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:cacheColorHint="@android:color/transparent"
-        android:divider="@null"
-        android:dividerHeight="5dp"
-        android:listSelector="@android:color/transparent" />
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/home_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+
 </FrameLayout>

@@ -33,12 +33,14 @@
             android:text="名字" />
 
         <TextView
+            android:id="@+id/tv_comment_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="30分钟前" />
     </LinearLayout>
 
     <TextView
+        android:id="@+id/tv_comment_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/img_comment_avatar"

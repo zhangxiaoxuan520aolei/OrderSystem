@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MyCountView">
+        <!--左边的 - 号-->
+        <attr name="minusText" format="string" />
+        <attr name="minusTextSize" format="dimension" />
+        <attr name="minusTextColor" format="color" />
+        <!--中间的Text-->
+        <attr name="countText" format="string" />
+        <attr name="countTextSize" format="dimension" />
+        <attr name="countTextColor" format="color" />
+        <!--右边的 + 号-->
+        <attr name="plusText" format="string" />
+        <attr name="plusTextSize" format="dimension" />
+        <attr name="plusTextColor" format="color" />
+    </declare-styleable>
+</resources>

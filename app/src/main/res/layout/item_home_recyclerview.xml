@@ -4,9 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="100dp"
     android:background="@drawable/item_card_background_selector"
-    android:descendantFocusability="beforeDescendants"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp">
+    android:descendantFocusability="beforeDescendants">
 
     <android.support.percent.PercentRelativeLayout
         android:layout_width="match_parent"
@@ -48,7 +46,7 @@
                     android:layout_height="wrap_content"
                     android:text="蒸食鲜包"
                     android:textColor="#000"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/tv_canteen_item_home"
@@ -58,7 +56,7 @@
                     android:layout_marginRight="0dp"
                     android:text="第一食堂"
                     android:textColor="#000"
-                    android:textSize="20sp"
+                    android:textSize="16sp"
                     app:layout_marginRightPercent="3%" />
             </android.support.percent.PercentRelativeLayout>
 
@@ -69,7 +67,7 @@
                 android:gravity="center_vertical">
 
                 <TextView
-                    android:id="@+id/tv_detail_item_home"
+                    android:id="@+id/tv_name_item_home"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="北京烤鸭一份"

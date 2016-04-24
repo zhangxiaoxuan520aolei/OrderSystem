@@ -1,4 +1,4 @@
-package com.aolei.jxustnc.ordersystem.util;
+package com.aolei.jxustnc.ordersystem.adapter;
 
 import android.content.Context;
 import android.util.SparseArray;

@@ -1,4 +1,4 @@
-package com.aolei.jxustnc.ordersystem.util;
+package com.aolei.jxustnc.ordersystem.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -38,9 +38,25 @@ public abstract class RecyclerViewCommonAdapter<T> extends RecyclerView.Adapter<
         mDatas = datas;
     }
 
+    /**
+     * 获取Position
+     *
+     * @param viewHolder
+     * @return
+     */
+    protected int getPosition(RecyclerView.ViewHolder viewHolder) {
+        return viewHolder.getAdapterPosition();
+    }
+
     @Override
     public RecyclerViewViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        RecyclerViewViewHolder viewHolder = RecyclerViewViewHolder.get(mContext, parent, mLayoutId);
+        final RecyclerViewViewHolder viewHolder = RecyclerViewViewHolder.get(mContext, parent, mLayoutId);
+        viewHolder.getConvertView().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mOnItemClickListener.onItemClick(v, getPosition(viewHolder));
+            }
+        });
         return viewHolder;
     }
 
