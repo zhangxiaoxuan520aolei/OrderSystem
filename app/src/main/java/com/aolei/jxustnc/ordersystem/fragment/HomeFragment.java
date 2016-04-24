@@ -13,7 +13,6 @@ import android.widget.ListView;
 
 import com.aolei.jxustnc.ordersystem.R;
 import com.aolei.jxustnc.ordersystem.activity.FoodDetailActivity;
-import com.aolei.jxustnc.ordersystem.entity.FoodEntity;
 import com.aolei.jxustnc.ordersystem.util.ListViewCommonAdapter;
 import com.aolei.jxustnc.ordersystem.util.ListViewViewHolder;
 
