@@ -20,6 +20,7 @@
             android:background="#ffffff">
 
             <TextView
+                android:id="@+id/tv_price_item_food"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -38,7 +39,7 @@
                 android:layout_marginRight="0dp"
                 android:layout_marginTop="5dp"
                 android:text="立即购买"
-                android:textColor="@android:color/holo_blue_dark"
+                android:textColor="@android:color/black"
                 android:textSize="16sp"
                 app:layout_marginRightPercent="3%" />
         </android.support.percent.PercentRelativeLayout>
@@ -100,6 +101,7 @@
                         app:layout_marginLeftPercent="3%">
 
                         <TextView
+                            android:id="@+id/tv_shop_item_food"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="蒸鲜食包"
@@ -107,6 +109,7 @@
                             android:textSize="18sp" />
 
                         <TextView
+                            android:id="@+id/tv_canteen_item_food"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="江西理工大学第一食堂"
@@ -163,6 +166,7 @@
                 app:layout_marginLeftPercent="3%" />
 
             <TextView
+                android:id="@+id/tv_sold_item_food"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"

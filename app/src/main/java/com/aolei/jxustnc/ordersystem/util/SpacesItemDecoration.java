@@ -19,7 +19,7 @@ public class SpacesItemDecoration extends RecyclerView.ItemDecoration{
         outRect.right = space * 2;
         outRect.bottom = space;
         if (parent.getChildAdapterPosition(view) == 0){
-            //outRect.top = space;
+               outRect.top = 2 * space;
         }
     }
 }

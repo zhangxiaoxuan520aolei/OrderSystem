@@ -8,6 +8,7 @@ import cn.bmob.v3.BmobObject;
  * Created by aolei on 2016/4/17.
  */
 public class Store extends BmobObject implements Serializable{
+
     private String store_pic;
     private String store_des;
     private String store_name;

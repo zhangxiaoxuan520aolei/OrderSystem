@@ -23,17 +23,13 @@
             app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-            <android.support.percent.PercentRelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+            <ImageView
+                android:id="@+id/img_food"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/cheese_3"
                 app:layout_collapseMode="parallax"
-                app:layout_collapseParallaxMultiplier="0.7">
-
-              <ImageView
-                  android:layout_width="wrap_content"
-                  android:src="@mipmap/cheese_3"
-                  android:layout_height="wrap_content" />
-            </android.support.percent.PercentRelativeLayout>
+                app:layout_collapseParallaxMultiplier="0.7" />
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"

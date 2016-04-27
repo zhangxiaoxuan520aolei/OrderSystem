@@ -18,6 +18,10 @@
             android:id="@+id/nav_canteen3"
             android:icon="@drawable/ic_menu_canteen"
             android:title="第三食堂" />
+        <item
+            android:id="@+id/nav_purchase"
+            android:icon="@drawable/ic_menu_send"
+            android:title="我的购买" />
 
     </group>
 
@@ -27,14 +31,16 @@
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
                 android:title="我的收藏" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="我的购买" />
+
             <item
                 android:id="@+id/nav_manage"
                 android:icon="@drawable/ic_menu_manage"
                 android:title="设置" />
+            <item
+                android:id="@+id/signout"
+                android:icon="@drawable/ic_signout"
+                android:title="退出登录"
+                />
         </menu>
     </item>
 

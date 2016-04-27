@@ -13,11 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.aolei.jxustnc.ordersystem.R;
+import com.aolei.jxustnc.ordersystem.activity.ShowFoodActivity;
 import com.aolei.jxustnc.ordersystem.adapter.MyRecyleViewAdapter;
 import com.aolei.jxustnc.ordersystem.entity.Store;
+import com.aolei.jxustnc.ordersystem.util.CheckUtils;
 import com.aolei.jxustnc.ordersystem.util.OnRecyclerViewItemClickListener;
 import com.aolei.jxustnc.ordersystem.util.SpacesItemDecoration;
-import com.aolei.jxustnc.ordersystem.util.Utils;
 
 import java.util.List;
 
@@ -44,7 +45,7 @@ public class CanteenFragment2 extends Fragment implements SwipeRefreshLayout.OnR
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        Bmob.initialize(getContext(), Utils.APPID);
+        Bmob.initialize(getContext(), CheckUtils.APPID);
         super.onActivityCreated(savedInstanceState);
         mSwipeRefreshLayout = (SwipeRefreshLayout)view.findViewById(R.id.CanteenFragment);
         mSwipeRefreshLayout.setOnRefreshListener(this);
@@ -104,8 +105,8 @@ public class CanteenFragment2 extends Fragment implements SwipeRefreshLayout.OnR
      */
     @Override
     public void onItemClick(View view, Store store) {
-        /*Intent mIntent = new Intent(getContext(), ShowFoodActivity.class);
+        Intent mIntent = new Intent(getContext(), ShowFoodActivity.class);
         mIntent.putExtra("store_info",store);
-        startActivity(mIntent);*/
+        startActivity(mIntent);
     }
 }

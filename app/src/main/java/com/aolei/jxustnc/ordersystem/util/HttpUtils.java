@@ -3,9 +3,8 @@ package com.aolei.jxustnc.ordersystem.util;
 import android.content.Context;
 import android.util.Log;
 
-import com.aolei.jxustnc.ordersystem.entity.Store;
-
-import java.util.List;
+import com.aolei.jxustnc.ordersystem.entity.Comment;
+import com.aolei.jxustnc.ordersystem.entity.Food;
 
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.listener.FindListener;
@@ -16,61 +15,45 @@ import cn.bmob.v3.listener.FindListener;
  * 解释权：敖磊
  */
 public class HttpUtils {
-    private Context mContext;
-    private String mCateen;
-    List<Store> resultList;
-    private List<Store> mStores;
-   public HttpUtils(Context context) {
-        this.mContext = context;
+
+    /**
+     * 查询所有食物方法
+     *
+     * @param context
+     * @param query
+     */
+    public static void queryFood(Context context, BmobQuery<Food> query, FindListener<Food> foodFindListener) {
+        query.order("-sold_count");
+        query.include("store");
+        query.findObjects(context, foodFindListener);
     }
 
     /**
-     * 查询Store表中所有的数据，
-     *
-     * @return Stroe表中数据的List集合
+     * 通过店名查找店内食物
+     * @param context
+     * @param query
+     * @param foodFindListener
+     * @param store_objectId
      */
-    public void querryStore() {
-        BmobQuery<Store> query = new BmobQuery<>();
-
-        //按照ObjectId查找
-        query.order("objectId");
-        query.findObjects(mContext, new FindListener<Store>() {
-            //查询成功
-
-            @Override
-            public void onSuccess(List<Store> list) {
-                for (int i = 0; i < list.size(); i++) {
-                    Store store = new Store();
-                    store.setStore_pic(list.get(i).getStore_pic());
-                    store.setBelong_cateen(list.get(i).getBelong_cateen());
-                    store.setStore_des(list.get(i).getStore_des());
-                    store.setStore_name(list.get(i).getStore_name());
-                    Log.d("TAG", store.getStore_pic() + " " + store.getBelong_cateen() + " " + store.getStore_des() + " "
-                            + store.getStore_name());
-                    resultList.add(store);
-                    Log.d("result",resultList.size()+"");
-                }
-            }
-
-            @Override
-            public void onFinish() {
-                super.onFinish();
-                setStores(resultList);
-
-            }
-
-            @Override
-            public void onError(int i, String s) {
-                Log.d("StoreError", s);
-            }
-        });
+    public static void queryFoodByStoreName(Context context,BmobQuery<Food> query,FindListener<Food> foodFindListener,String store_objectId){
+        Log.d("name",store_objectId);
+        query.addWhereEqualTo("store", store_objectId);
+        query.order("-updatedAt");
+        query.include("store");
+        query.findObjects(context,foodFindListener);
     }
-
-    public List<Store> getStores() {
-        return mStores;
-    }
-
-    public void setStores(List<Store> stores) {
-        mStores = stores;
+    /**
+     * 查询食物评论
+     *
+     * @param context
+     * @param foodId
+     * @param findListener
+     */
+    public static void queryFoodCommment(Context context, String foodId, FindListener<Comment> findListener) {
+        BmobQuery<Comment> query = new BmobQuery<>();
+        query.include("user");
+        query.include("food");
+        query.addWhereEqualTo("food", foodId);
+        query.findObjects(context, findListener);
     }
 }
