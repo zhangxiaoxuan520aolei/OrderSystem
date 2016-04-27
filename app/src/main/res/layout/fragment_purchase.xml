@@ -1,0 +1,52 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.aolei.jxustnc.ordersystem.fragment.PurchaseFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+
+        <com.aolei.jxustnc.ordersystem.view.ColorTrackView
+            android:id="@+id/id_tab01"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            custom:text="已完成订单"
+            custom:text_change_color="#ffff0000"
+            custom:text_origin_color="#ff000000"
+            custom:text_size="16sp" />
+
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/darker_gray" />
+
+        <com.aolei.jxustnc.ordersystem.view.ColorTrackView
+            android:id="@+id/id_tab02"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            custom:progress="1"
+            custom:text="未完成订单"
+            custom:text_change_color="#ffff0000"
+            custom:text_origin_color="#ff000000"
+            custom:text_size="16sp" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/purchase_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+</LinearLayout>
