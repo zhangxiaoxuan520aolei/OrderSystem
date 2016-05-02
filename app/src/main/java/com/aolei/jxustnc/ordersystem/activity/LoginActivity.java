@@ -12,10 +12,12 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.aolei.jxustnc.ordersystem.R;
 import com.aolei.jxustnc.ordersystem.entity.User;
 import com.aolei.jxustnc.ordersystem.util.CheckUtils;
+import com.aolei.jxustnc.ordersystem.util.NetworkUtil;
 
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.listener.SaveListener;
@@ -65,27 +67,32 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         user = new User();
         switch (v.getId()) {
             case R.id.login_btn:
-                user.setUsername(mUname.getText().toString());
-                user.setPassword(mUpwd.getText().toString());
-                SharedPreferences.Editor editor = mSharedPreferences.edit();
-                editor.putString("username", mUname.getText().toString());
-                editor.putString("userpwd", mUpwd.getText().toString());
-                editor.putBoolean("status",true);
-                editor.commit();
-                user.login(this, new SaveListener() {
-                    @Override
-                    public void onSuccess() {
-                        Intent intent = new Intent();
-                        intent.setClass(LoginActivity.this, MainActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }
+                if (NetworkUtil.isConnected(this)){
+                    user.setUsername(mUname.getText().toString());
+                    user.setPassword(mUpwd.getText().toString());
+                    SharedPreferences.Editor editor = mSharedPreferences.edit();
+                    editor.putString("username", mUname.getText().toString());
+                    editor.putString("userpwd", mUpwd.getText().toString());
+                    editor.putBoolean("status",true);
+                    editor.commit();
+                    user.login(this, new SaveListener() {
+                        @Override
+                        public void onSuccess() {
+                            Intent intent = new Intent();
+                            intent.setClass(LoginActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
 
-                    @Override
-                    public void onFailure(int i, String s) {
-                        Snackbar.make(mLogin, "账号或密码不正确", Snackbar.LENGTH_LONG).show();
-                    }
-                });
+                        @Override
+                        public void onFailure(int i, String s) {
+                            Snackbar.make(mLogin, "账号或密码不正确", Snackbar.LENGTH_LONG).show();
+                        }
+                    });
+                }else{
+                    Toast.makeText(this,"网络未连接",Toast.LENGTH_SHORT).show();
+                }
+
                 break;
             case R.id.regist_textview:
                 Intent intent = new Intent();
@@ -96,7 +103,11 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         }
     }
 
-    public void isLogin(SharedPreferences sharedPreferences){
+    /**
+     * 登录以后把账号密码存入到sharedPreferences
+     * @param sharedPreferences
+     */
+    private void isLogin(SharedPreferences sharedPreferences){
         if (!("".equals(sharedPreferences.getString("username",""))) && !("".equals(sharedPreferences.getString("userpwd","")))){
             Intent intent = new Intent();
             intent.setClass(LoginActivity.this, com.aolei.jxustnc.ordersystem.activity.MainActivity.class);

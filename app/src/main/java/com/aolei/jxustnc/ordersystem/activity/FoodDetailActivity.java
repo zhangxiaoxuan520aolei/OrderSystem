@@ -1,5 +1,6 @@
 package com.aolei.jxustnc.ordersystem.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -9,33 +10,36 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aolei.jxustnc.ordersystem.R;
-import com.aolei.jxustnc.ordersystem.adapter.RecyclerViewCommonAdapter;
-import com.aolei.jxustnc.ordersystem.adapter.RecyclerViewViewHolder;
 import com.aolei.jxustnc.ordersystem.entity.Comment;
 import com.aolei.jxustnc.ordersystem.entity.Food;
 import com.aolei.jxustnc.ordersystem.util.DividerItemDecoration;
 import com.aolei.jxustnc.ordersystem.util.HttpUtils;
+import com.aolei.jxustnc.ordersystem.adapter.RecyclerViewCommonAdapter;
+import com.aolei.jxustnc.ordersystem.adapter.RecyclerViewViewHolder;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
 
 import cn.bmob.v3.listener.FindListener;
 
-public class FoodDetailActivity extends AppCompatActivity {
+public class FoodDetailActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Toolbar toolbar;
     private CollapsingToolbarLayout collapsing_layout;
     private RecyclerView food_detail_recyclerview;
     private TextView tv_price_item_food, tv_shop_item_food, tv_canteen_item_food, tv_sold_item_food;
     private ImageView img_food;
+    private Button btn_buy_food;
     private String foodId;
     private List<Comment> data_list;
     private RecyclerViewCommonAdapter<Comment> mAdapter;
+    private Food food;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +50,11 @@ public class FoodDetailActivity extends AppCompatActivity {
     }
 
     private void initEvent() {
-
+        btn_buy_food.setOnClickListener(this);
     }
 
     private void initView() {
+        btn_buy_food = (Button) findViewById(R.id.btn_buy_food);
         tv_price_item_food = (TextView) findViewById(R.id.tv_price_item_food);
         tv_shop_item_food = (TextView) findViewById(R.id.tv_shop_item_food);
         tv_canteen_item_food = (TextView) findViewById(R.id.tv_canteen_item_food);
@@ -59,10 +64,7 @@ public class FoodDetailActivity extends AppCompatActivity {
         collapsing_layout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_layout);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        collapsing_layout.setTitle("北京烤鸭");
-        //setRecyclerView();
         setData();
-
     }
 
     /**
@@ -70,7 +72,7 @@ public class FoodDetailActivity extends AppCompatActivity {
      */
     private void setData() {
         Bundle bundle = getIntent().getExtras();
-        Food food = (Food) bundle.getSerializable("list");
+        food = (Food) bundle.getSerializable("list");
         tv_price_item_food.setText(" ￥" + food.getPrice());
         tv_shop_item_food.setText(food.getStore().getStore_name());
         tv_canteen_item_food.setText("江西理工大学" + food.getStore().getBelong_cateen());
@@ -120,7 +122,7 @@ public class FoodDetailActivity extends AppCompatActivity {
             food_detail_recyclerview.setNestedScrollingEnabled(false);
             food_detail_recyclerview.setItemAnimator(new DefaultItemAnimator());
             food_detail_recyclerview.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
-            mAdapter.setmOnItemClickListener(new RecyclerViewCommonAdapter.OnItemClickListener() {
+            mAdapter.setOnItemClickListener(new RecyclerViewCommonAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(View view, int position) {
 
@@ -141,5 +143,19 @@ public class FoodDetailActivity extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_buy_food:
+                Intent intent = new Intent(FoodDetailActivity.this, SubmitOrderActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("order", food);
+                intent.putExtras(bundle);
+                startActivity(intent);
+                finish();
+                break;
+        }
     }
 }

@@ -27,7 +27,7 @@ public abstract class RecyclerViewCommonAdapter<T> extends RecyclerView.Adapter<
         void onItemClick(View view, int position);
     }
 
-    public void setmOnItemClickListener(OnItemClickListener onItemClickListener) {
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         this.mOnItemClickListener = onItemClickListener;
     }
 

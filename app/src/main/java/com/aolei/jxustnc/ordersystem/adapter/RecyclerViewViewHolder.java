@@ -79,6 +79,7 @@ public class RecyclerViewViewHolder extends RecyclerView.ViewHolder {
      * @param listener
      * @return
      */
+
     public RecyclerViewViewHolder setOnClickListener(int viewId, View.OnClickListener listener) {
         View view = getView(viewId);
         view.setOnClickListener(listener);

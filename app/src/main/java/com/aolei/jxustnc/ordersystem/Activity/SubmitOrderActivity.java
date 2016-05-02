@@ -1,7 +1,7 @@
 package com.aolei.jxustnc.ordersystem.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -14,7 +14,6 @@ import com.aolei.jxustnc.ordersystem.adapter.RecyclerViewCommonAdapter;
 import com.aolei.jxustnc.ordersystem.adapter.RecyclerViewViewHolder;
 import com.aolei.jxustnc.ordersystem.entity.Food;
 import com.aolei.jxustnc.ordersystem.entity.Order;
-import com.aolei.jxustnc.ordersystem.util.DividerItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +51,7 @@ public class SubmitOrderActivity extends AppCompatActivity {
     }
 
     private void initEvent() {
-        mAdapter.setmOnItemClickListener(new RecyclerViewCommonAdapter.OnItemClickListener() {
+        mAdapter.setOnItemClickListener(new RecyclerViewCommonAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
             }
@@ -78,7 +77,7 @@ public class SubmitOrderActivity extends AppCompatActivity {
     private void setRecyclerView() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         if (data_list != null && data_list.size() != 0) {
-            mAdapter = new RecyclerViewCommonAdapter<Order>(this, R.layout.item_submit_recyclerview, data_list) {
+            mAdapter = new RecyclerViewCommonAdapter<Order>(SubmitOrderActivity.this, R.layout.item_submit_recyclerview, data_list) {
                 @Override
                 public void convert(RecyclerViewViewHolder holder, final Order order) {
                     /**
@@ -133,7 +132,7 @@ public class SubmitOrderActivity extends AppCompatActivity {
             submit_recyclerview.setAdapter(mAdapter);
             //如果可以确定每个item的高度是固定的，设置这个选项可以提高性能
             submit_recyclerview.hasFixedSize();
-            submit_recyclerview.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
+//            submit_recyclerview.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
         }
         setTotalPrice(data_list);
     }

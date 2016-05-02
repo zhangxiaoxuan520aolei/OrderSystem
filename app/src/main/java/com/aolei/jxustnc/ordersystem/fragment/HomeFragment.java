@@ -140,7 +140,7 @@ public class HomeFragment extends Fragment {
                 home_swipe_layout.setRefreshing(false);
             }
         });
-        mAdapter.setmOnItemClickListener(new RecyclerViewCommonAdapter.OnItemClickListener() {
+        mAdapter.setOnItemClickListener(new RecyclerViewCommonAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 Bundle bundle = new Bundle();

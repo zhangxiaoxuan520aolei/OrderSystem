@@ -14,6 +14,7 @@ import com.aolei.jxustnc.ordersystem.R;
 import com.aolei.jxustnc.ordersystem.entity.User;
 import com.aolei.jxustnc.ordersystem.util.CheckUtils;
 import com.aolei.jxustnc.ordersystem.util.MyTextChangeListener;
+import com.aolei.jxustnc.ordersystem.util.NetworkUtil;
 
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.listener.SaveListener;
@@ -37,7 +38,7 @@ public class RegistActivity extends Activity implements View.OnClickListener {
 
     }
 
-    void initView() {
+    protected void initView() {
         mUnameInputLayout = (TextInputLayout) findViewById(R.id.regist_uname);
         mUpwdInputLayout = (TextInputLayout) findViewById(R.id.regist_pwd);
         mDormitoryInputLayout = (TextInputLayout) findViewById(R.id.regist_dormitory);
@@ -45,7 +46,7 @@ public class RegistActivity extends Activity implements View.OnClickListener {
         mRegistButton = (Button) findViewById(R.id.regist_btn);
     }
 
-    void listener() {
+    protected void listener() {
         mRegistButton.setOnClickListener(this);
         mUpwdInputLayout.getEditText().setOnFocusChangeListener(new MyTextChangeListener(mUpwdInputLayout, RegistActivity.this));
         mDormitoryInputLayout.getEditText().setOnFocusChangeListener(new MyTextChangeListener(mDormitoryInputLayout, RegistActivity.this));
@@ -54,31 +55,36 @@ public class RegistActivity extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        if (CheckUtils.isPassWord(mUpwdInputLayout.getEditText().getText().toString()) && CheckUtils.isDormitoryNum(mDormitoryInputLayout.getEditText().getText().toString())
-                && CheckUtils.isMobileNumber(mPhoneNumInputLayout.getEditText().getText().toString())) {
-            User user = new User();
-            user.setUsername(mUnameInputLayout.getEditText().getText().toString());
-            user.setPassword(mUpwdInputLayout.getEditText().getText().toString());
-            user.setDormitoryNumber(mDormitoryInputLayout.getEditText().getText().toString());
-            user.setMobilePhoneNumber(mPhoneNumInputLayout.getEditText().getText().toString());
-            user.setMobilePhoneNumberVerified(true);
-            user.signUp(this, new SaveListener() {
-                @Override
-                public void onSuccess() {
-                    Intent intent = new Intent();
-                    intent.setClass(RegistActivity.this, com.aolei.jxustnc.ordersystem.activity.LoginActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
+        if (NetworkUtil.isConnected(this)) {
+            if (CheckUtils.isPassWord(mUpwdInputLayout.getEditText().getText().toString()) && CheckUtils.isDormitoryNum(mDormitoryInputLayout.getEditText().getText().toString())
+                    && CheckUtils.isMobileNumber(mPhoneNumInputLayout.getEditText().getText().toString())) {
+                User user = new User();
+                user.setUsername(mUnameInputLayout.getEditText().getText().toString());
+                user.setPassword(mUpwdInputLayout.getEditText().getText().toString());
+                user.setDormitoryNumber(mDormitoryInputLayout.getEditText().getText().toString());
+                user.setMobilePhoneNumber(mPhoneNumInputLayout.getEditText().getText().toString());
+                user.setMobilePhoneNumberVerified(true);
+                user.signUp(this, new SaveListener() {
+                    @Override
+                    public void onSuccess() {
+                        Intent intent = new Intent();
+                        intent.setClass(RegistActivity.this, com.aolei.jxustnc.ordersystem.activity.LoginActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
 
-                @Override
-                public void onFailure(int i, String s) {
-                    Log.d("error", s);
+                    @Override
+                    public void onFailure(int i, String s) {
+                        Log.d("error", s);
 
-                }
-            });
+                    }
+                });
+            } else {
+                Snackbar.make(mRegistButton, "亲,您打开的方式不对哦,再检查一下吧", Snackbar.LENGTH_SHORT).show();
+            }
         } else {
-            Snackbar.make(mRegistButton, "亲,您打开的方式不对哦,再检查一下吧", Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(mRegistButton, "网络未连接", Snackbar.LENGTH_SHORT).show();
         }
+
     }
 }

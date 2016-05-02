@@ -3,6 +3,7 @@ package com.aolei.jxustnc.ordersystem.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
@@ -63,21 +64,26 @@ public class CanteenFragment1 extends Fragment implements SwipeRefreshLayout.OnR
      * 请求网络后台数据
      */
     private void getNetData() {
-        BmobQuery<Store> storeBmobQuery = new BmobQuery<>();
-        storeBmobQuery.addWhereEqualTo("belong_cateen", "第一食堂");
-        storeBmobQuery.order("objectId");
-        storeBmobQuery.findObjects(getContext(), new FindListener<Store>() {
-            @Override
-            public void onSuccess(List<Store> list) {
-                lists = list;
-                setNetData();
-            }
+        if (NetworkUtil.isConnected(getContext())){
+            BmobQuery<Store> storeBmobQuery = new BmobQuery<>();
+            storeBmobQuery.addWhereEqualTo("belong_cateen", "第一食堂");
+            storeBmobQuery.order("objectId");
+            storeBmobQuery.findObjects(getContext(), new FindListener<Store>() {
+                @Override
+                public void onSuccess(List<Store> list) {
+                    lists = list;
+                    setNetData();
+                }
 
-            @Override
-            public void onError(int i, String s) {
-                Log.d("Error", "数据不存在"+s);
-            }
-        });
+                @Override
+                public void onError(int i, String s) {
+                    Log.d("Error", "数据不存在"+s);
+                }
+            });
+        }else{
+            Snackbar.make(getView(),"网络未连接",Snackbar.LENGTH_SHORT).show();
+        }
+
 
     }
 
