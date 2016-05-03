@@ -1,11 +1,8 @@
 package com.aolei.jxustnc.ordersystem.util;
 
 import android.content.Context;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.view.View;
-
-import com.aolei.jxustnc.ordersystem.R;
 
 /**
  * 注册验证数据是否合法
@@ -20,12 +17,17 @@ public class MyTextChangeListener implements View.OnFocusChangeListener {
         this.context = context;
     }
 
-    /**
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+
+    }
+
+   /* *//**
      * EditText 失去焦点监听事件
      *
      * @param v
      * @param hasFocus
-     */
+     *//*
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
         switch (v.getId()) {
@@ -58,6 +60,6 @@ public class MyTextChangeListener implements View.OnFocusChangeListener {
                 break;
         }
     }
-
+*/
 
 }

@@ -13,10 +13,12 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +29,7 @@ import com.aolei.jxustnc.ordersystem.fragment.CanteenFragment2;
 import com.aolei.jxustnc.ordersystem.fragment.CanteenFragment3;
 import com.aolei.jxustnc.ordersystem.fragment.HomeFragment;
 import com.aolei.jxustnc.ordersystem.fragment.PurchaseFragment;
+import com.aolei.jxustnc.ordersystem.util.ToastUtil;
 
 public class MainActivity extends FragmentActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
     private Toolbar toolbar;
@@ -34,22 +37,16 @@ public class MainActivity extends FragmentActivity implements NavigationView.OnN
     private ActionBarDrawerToggle toggle;
     private Fragment currentFragment;
     private NavigationView navigationView;
-    private LinearLayout layout_login_regist;
     private SharedPreferences mSharedPreferences;
+    private ImageView nav_imageView;
     private TextView mStatusText;
-    private NavigationView mNavigationView;
+    public static final int LOGIN_CODE = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mSharedPreferences = getSharedPreferences("user_info", Context.MODE_APPEND);
-        mNavigationView = (NavigationView)findViewById(R.id.nav_view);
-        View view  = mNavigationView.getHeaderView(0);//获取NavigationView的heardLayout
-        mStatusText = (TextView)view.findViewById(R.id.status);//通过heardLayout来获取TextView 控件
-        if (mSharedPreferences.getBoolean("status",false) == true){
-            mStatusText.setText(mSharedPreferences.getString("username",""));
-    }
         initView();
         initEvent();
     }
@@ -62,28 +59,51 @@ public class MainActivity extends FragmentActivity implements NavigationView.OnN
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_home);
-        layout_login_regist.setOnClickListener(this);
+        nav_imageView.setOnClickListener(this);
     }
 
     /**
      * 初始化控件
      */
     private void initView() {
-        View v = LayoutInflater.from(this).inflate(R.layout.nav_header_main, null);
-        layout_login_regist = (LinearLayout) v.findViewById(R.id.layout_login_regist);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitleTextColor(Color.WHITE);
         toolbar.setTitle("推荐");
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
+        nav_imageView = (ImageView) headerView.findViewById(R.id.nav_imageView);
+        mStatusText = (TextView) headerView.findViewById(R.id.status);//通过heardLayout来获取TextView 控件
+        if (mSharedPreferences.getBoolean("status", false) == true) {
+            mStatusText.setText(mSharedPreferences.getString("username", ""));
+        }
         //显示第一个Fragment
         HomeFragment homeFragment = new HomeFragment();
         currentFragment = homeFragment;
         getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, homeFragment).commit();
 
+        /**
+         * 添加数据，用作测试
+         Food food = new Food();
+         food.setName("茄子豆角");
+         food.setPrice("8");
+         food.setSold_count("239");
+         Store store = new Store();
+         store.setStore_name("第三食堂");
+         store.setObjectId("gHqkMMMQ");
+         food.setStore(store);
+         food.setImg_url("");
+         food.save(this, new SaveListener() {
+        @Override public void onSuccess() {
+
+        }
+
+        @Override public void onFailure(int i, String s) {
+
+        }
+        });*/
     }
 
     /**
@@ -148,13 +168,14 @@ public class MainActivity extends FragmentActivity implements NavigationView.OnN
         } else if (id == R.id.nav_purchase) {
             toolbar.setTitle("我的购买");
             switchFragment(new PurchaseFragment());
-        }else if (id == R.id.signout){
+        } else if (id == R.id.signout) {
             SharedPreferences.Editor editor = mSharedPreferences.edit();
-            editor.putString("username","");
-            editor.putString("userpwd","");
+            editor.putString("username", "");
+            editor.putString("userpwd", "");
+            editor.putBoolean("status", false);
             editor.commit();
             Intent intent = new Intent();
-            intent.setClass(this,LoginActivity.class);
+            intent.setClass(this, LoginActivity.class);
             startActivity(intent);
             finish();
         }
@@ -167,9 +188,10 @@ public class MainActivity extends FragmentActivity implements NavigationView.OnN
         if (currentFragment != null) {
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             if (!fragment.isAdded()) {
-                transaction.hide(currentFragment).add(R.id.fragment_container, fragment).commit();
+                transaction.hide(currentFragment).replace(R.id.fragment_container, fragment).commit();
             } else {
                 transaction.hide(currentFragment).show(fragment).commit();
+
             }
         }
         currentFragment = fragment;
@@ -178,11 +200,37 @@ public class MainActivity extends FragmentActivity implements NavigationView.OnN
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.layout_login_regist:
-                Toast.makeText(this, "点击", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this, LoginActivity.class));
-                break;
+            case R.id.nav_imageView:
+                if (!isLogin(mSharedPreferences)) {
+                    startActivityForResult(new Intent(this, LoginActivity.class), LOGIN_CODE);
+                    Log.d("NewOrin", "没有登录过");
+                } else {
+                    ToastUtil.showShort(MainActivity.this, "已登录");
+                    break;
+                }
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == LOGIN_CODE) {
+            if (mSharedPreferences.getBoolean("status", false) == true) {
+                mStatusText.setText(mSharedPreferences.getString("username", ""));
+            }
+        }
+    }
+
+    /**
+     * 判断是否登录过
+     *
+     * @param sharedPreferences
+     * @return
+     */
+
+    public boolean isLogin(SharedPreferences sharedPreferences) {
+        if ("".equals(sharedPreferences.getString("username", "")) && ("".equals(sharedPreferences.getString("userpwd", "")))) {
+            return false;
+        } else return true;
+    }
 }

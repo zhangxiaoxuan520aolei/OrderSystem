@@ -1,106 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.percent.PercentFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="100dp"
-    android:background="@drawable/item_card_background_selector"
-    android:descendantFocusability="beforeDescendants">
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                                    xmlns:card_view="http://schemas.android.com/tools"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="5dp"
+                                    card_view:cardCornerRadius="5dp">
 
-    <android.support.percent.PercentRelativeLayout
+    <android.support.percent.PercentFrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:descendantFocusability="afterDescendants"
-        android:gravity="center_vertical">
+        android:layout_height="100dp"
+        android:descendantFocusability="beforeDescendants">
 
-        <ImageView
-            android:id="@+id/img_item_home"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:src="@drawable/ic_test"
-            app:layout_heightPercent="90%"
-            app:layout_widthPercent="30%" />
+        <android.support.percent.PercentRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:descendantFocusability="afterDescendants"
+            android:gravity="center_vertical">
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="0dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="0dp"
-            android:layout_toRightOf="@+id/img_item_home"
-            android:orientation="vertical"
-            app:layout_heightPercent="90%"
-            app:layout_marginBottomPercent="2%"
-            app:layout_marginLeftPercent="3%"
-            app:layout_marginTopPercent="2%"
-            app:layout_widthPercent="70%">
-
-            <android.support.percent.PercentRelativeLayout
-                android:layout_width="match_parent"
+            <ImageView
+                android:id="@+id/img_item_home"
+                android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_weight="1"
-                android:gravity="center_vertical">
+                android:src="@drawable/ic_test"
+                app:layout_heightPercent="90%"
+                app:layout_widthPercent="30%" />
 
-                <TextView
-                    android:id="@+id/tv_shop_item_home"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="蒸食鲜包"
-                    android:textColor="#000"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/tv_canteen_item_home"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="0dp"
-                    android:text="第一食堂"
-                    android:textColor="#000"
-                    android:textSize="16sp"
-                    app:layout_marginRightPercent="3%" />
-            </android.support.percent.PercentRelativeLayout>
-
-            <android.support.percent.PercentRelativeLayout
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_weight="2"
-                android:gravity="center_vertical">
+                android:layout_marginBottom="0dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="0dp"
+                android:layout_toRightOf="@+id/img_item_home"
+                android:orientation="vertical"
+                app:layout_heightPercent="90%"
+                app:layout_marginBottomPercent="2%"
+                app:layout_marginLeftPercent="3%"
+                app:layout_marginTopPercent="2%"
+                app:layout_widthPercent="70%">
 
-                <TextView
-                    android:id="@+id/tv_name_item_home"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="北京烤鸭一份"
-                    android:textSize="18sp" />
-            </android.support.percent.PercentRelativeLayout>
+                <android.support.percent.PercentRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical">
 
-            <android.support.percent.PercentRelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:gravity="center_vertical">
+                    <TextView
+                        android:id="@+id/tv_shop_item_home"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="蒸食鲜包"
+                        android:textColor="#000"
+                        android:textSize="18sp" />
 
-                <TextView
-                    android:id="@+id/tv_price_item_home"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="0dp"
-                    android:text="￥120"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="20sp"
-                    app:layout_marginBottomPercent="2%" />
+                    <TextView
+                        android:id="@+id/tv_canteen_item_home"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="0dp"
+                        android:text="第一食堂"
+                        android:textColor="#000"
+                        android:textSize="16sp"
+                        app:layout_marginRightPercent="3%" />
+                </android.support.percent.PercentRelativeLayout>
 
-                <TextView
-                    android:id="@+id/tv_count_item_home"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginBottom="0dp"
-                    android:layout_marginRight="0dp"
-                    android:text="已售0笔"
-                    app:layout_marginBottomPercent="1%"
-                    app:layout_marginRightPercent="3%" />
-            </android.support.percent.PercentRelativeLayout>
-        </LinearLayout>
-    </android.support.percent.PercentRelativeLayout>
-</android.support.percent.PercentFrameLayout>
+                <android.support.percent.PercentRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/tv_name_item_home"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="北京烤鸭一份"
+                        android:textSize="18sp" />
+                </android.support.percent.PercentRelativeLayout>
+
+                <android.support.percent.PercentRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/tv_price_item_home"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="0dp"
+                        android:text="￥120"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="20sp"
+                        app:layout_marginBottomPercent="2%" />
+
+                    <TextView
+                        android:id="@+id/tv_count_item_home"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginBottom="0dp"
+                        android:layout_marginRight="0dp"
+                        android:text="已售0笔"
+                        app:layout_marginBottomPercent="1%"
+                        app:layout_marginRightPercent="3%" />
+                </android.support.percent.PercentRelativeLayout>
+            </LinearLayout>
+        </android.support.percent.PercentRelativeLayout>
+    </android.support.percent.PercentFrameLayout>
+</android.support.v7.widget.CardView>

@@ -50,7 +50,7 @@ public class ShowFoodActivity extends AppCompatActivity implements SwipeRefreshL
 
     }
 
-    protected void initView() {
+    void initView() {
         mToolbar = (Toolbar) findViewById(R.id.store_title);
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.ShowFood);
         mSwipeRefreshLayout.setOnRefreshListener(this);
@@ -87,10 +87,7 @@ public class ShowFoodActivity extends AppCompatActivity implements SwipeRefreshL
         mSwipeRefreshLayout.setRefreshing(false);
     }
 
-    /**
-     * 将数据设置到RecyclerView中
-     */
-    protected void setRecyclerViewDate() {
+    private void setRecyclerViewDate() {
         if (!mFoodList.isEmpty()) {
             LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
             mRecyclerView.setLayoutManager(mLinearLayoutManager);

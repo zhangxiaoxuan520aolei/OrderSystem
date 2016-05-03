@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/nav_header_height"
-    android:id="@+id/layout_login_regist"
-    android:background="@drawable/side_nav_bar"
-    android:clickable="true"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+              android:layout_width="match_parent"
+              android:layout_height="@dimen/nav_header_height"
+              android:background="@drawable/side_nav_bar"
+              android:clickable="true"
+              android:gravity="center"
+              android:orientation="vertical" >
 
-    <ImageView
-        android:id="@+id/imageView"
+    <com.aolei.jxustnc.ordersystem.view.CircleImageView
+        android:id="@+id/nav_imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:src="@android:drawable/sym_def_app_icon" />
 
-    <TextView android:id="@+id/status"
+    <TextView
+        android:id="@+id/status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
