@@ -2,6 +2,8 @@ package com.aolei.jxustnc.ordersystem.util;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.util.Log;
+import android.view.inputmethod.InputMethodManager;
 
 import java.util.regex.Pattern;
 
@@ -14,7 +16,7 @@ public class Utils {
     //电话号码的正则表达式
     public static final String REGEX_PHONE = "^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$";
     //密码验证正则表达式
-    public static final String REGEX_PWD = "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$";
+    public static final String REGEX_PWD = "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$";
     //宿舍号的正则表达式
     public static final String REGEX_DORMITORYNUM = "^([1-9][1-7])(([1-3][0-9])|([0][1-9]))$";
     //判断是汉字的正则表达式,且长度在1到10之间
@@ -30,7 +32,13 @@ public class Utils {
      * @return 如果合法，则返回true，如果不合法，则返回false
      */
     public static boolean isMobileNumber(String phoneNum) {
-        return Pattern.matches(REGEX_PHONE, phoneNum);
+        boolean result = false;
+        if (phoneNum != null){
+            result = Pattern.matches(REGEX_PHONE, phoneNum);
+        }
+        Log.d("1",result+"");
+        return result;
+
     }
 
     /**
@@ -40,7 +48,12 @@ public class Utils {
      * @return 合法返回true，不合法返回false
      */
     public static boolean isPassWord(String pwd) {
-        return Pattern.matches(REGEX_PWD, pwd);
+        boolean result = false;
+        if (pwd != null){
+            result = Pattern.matches(REGEX_PWD, pwd);
+        }
+        Log.d("1",result+"");
+        return result;
     }
 
     /**
@@ -50,8 +63,12 @@ public class Utils {
      * @return 合法返回true，不合法返回false
      */
     public static boolean isDormitoryNum(String dormitorynum) {
-        return Pattern.matches(REGEX_DORMITORYNUM, dormitorynum);
-
+        boolean result = false;
+        if (dormitorynum != null){
+            result = Pattern.matches(REGEX_DORMITORYNUM, dormitorynum);
+        }
+        Log.d("1",result+"");
+        return result;
     }
 
     /**
@@ -61,10 +78,37 @@ public class Utils {
      * @return
      */
     public static boolean isEquals(String pwd,String pwd1){
+        boolean result = false;
         if (pwd != null && pwd1 != null){
-            return pwd.equals(pwd1);
+            result = pwd.equals(pwd1);
         }
-        return false;
+        Log.d("1",result+"");
+            return result;
+    }
+
+    /**
+     * 判断验证码是否为空
+     * @param code
+     * @return
+     */
+    public static boolean isEmpty(String code){
+        if (code != null){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    /**
+     * 隐藏输入法
+     * @param context
+     */
+    public static void hideInputMethod(Context context){
+        InputMethodManager inputMethodManager = (InputMethodManager)context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        boolean isOpen = inputMethodManager.isActive();
+        if (isOpen){
+            inputMethodManager.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+        }
     }
     /**
      * 显示加载对话框

@@ -37,6 +37,8 @@
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/regist_uname"
                 android:layout_width="match_parent"
+                android:focusableInTouchMode="false"
+                android:focusable="false"
                 android:layout_height="0dp"
                 android:layout_weight="1">
 
@@ -58,7 +60,7 @@
                     android:id="@+id/et_register_pwd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="密码"
+                    android:hint="密码(必须是字母和数字的组合最少6位)"
                     android:inputType="textPassword"
                     android:maxLines="1"/>
             </android.support.design.widget.TextInputLayout>
@@ -88,7 +90,7 @@
                     android:id="@+id/et_register_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="手机号"
+                    android:hint="手机号(中国大陆)"
                     android:maxLines="1"/>
             </android.support.design.widget.TextInputLayout>
 
