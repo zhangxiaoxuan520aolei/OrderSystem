@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e9e7ef">
+
+    <android.support.percent.PercentRelativeLayout
+        android:id="@+id/all"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:background="#fff"
+        app:layout_heightPercent="60%"
+        app:layout_widthPercent="100%">
+
+        <android.support.percent.PercentRelativeLayout
+            android:id="@+id/layout_trueanme"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_centerHorizontal="true"
+            app:layout_heightPercent="25%"
+            app:layout_widthPercent="90%">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="店主姓名:"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/info_truename"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:gravity="center_vertical"
+                android:text=""
+                android:textSize="20sp"/>
+
+        </android.support.percent.PercentRelativeLayout>
+
+        <android.support.percent.PercentRelativeLayout
+            android:id="@+id/layout_store_name"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_below="@+id/layout_trueanme"
+            android:layout_centerHorizontal="true"
+            app:layout_heightPercent="25%"
+            app:layout_widthPercent="90%">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="店  铺  名:"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/info_storename"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:gravity="center_vertical"
+                android:text=""
+                android:textSize="20sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#000"/>
+        </android.support.percent.PercentRelativeLayout>
+
+        <android.support.percent.PercentRelativeLayout
+            android:id="@+id/layout_phone"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_below="@+id/layout_store_name"
+            android:layout_centerHorizontal="true"
+            app:layout_heightPercent="25%"
+            app:layout_widthPercent="90%">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="电话号码:"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/info_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:gravity="center_vertical"
+                android:text=""
+                android:textSize="20sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#000"/>
+        </android.support.percent.PercentRelativeLayout>
+
+        <android.support.percent.PercentRelativeLayout
+            android:id="@+id/layout_pwd"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_below="@+id/layout_phone"
+            android:layout_centerHorizontal="true"
+            app:layout_heightPercent="25%"
+            app:layout_widthPercent="90%">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="登录密码:"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/info_pwd"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:gravity="center_vertical"
+                android:inputType="textPassword"
+                android:maxLength="6"
+                android:text=""
+                android:textSize="20sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#000"/>
+        </android.support.percent.PercentRelativeLayout>
+
+    </android.support.percent.PercentRelativeLayout>
+
+    <android.support.percent.PercentRelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_below="@+id/all"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        app:layout_heightPercent="10%"
+        app:layout_widthPercent="90%">
+
+        <Button android:id="@+id/loginout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ff461f"
+            android:text="退出登录"
+            android:textSize="30sp"/>
+    </android.support.percent.PercentRelativeLayout>
+</android.support.percent.PercentRelativeLayout>

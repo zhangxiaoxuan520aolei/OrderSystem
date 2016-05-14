@@ -87,7 +87,8 @@ public class HomeFragment extends Fragment {
         if (NetworkUtil.isConnected(getActivity())) {
             data_list = new ArrayList<>();
             BmobQuery<Food> query = new BmobQuery<>();
-            HttpUtils.queryFood(getActivity(), query, new FindListener<Food>() {
+            HttpUtils httpUtils = new HttpUtils(getContext());
+            httpUtils.queryFood(query, new FindListener<Food>() {
                 @Override
                 public void onSuccess(List<Food> list) {
                     data_list = list;

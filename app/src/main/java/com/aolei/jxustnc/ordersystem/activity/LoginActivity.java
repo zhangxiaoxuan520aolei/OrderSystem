@@ -7,18 +7,17 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
+import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.aolei.jxustnc.ordersystem.R;
 import com.aolei.jxustnc.ordersystem.entity.User;
-import com.aolei.jxustnc.ordersystem.util.CheckUtils;
 import com.aolei.jxustnc.ordersystem.util.Utils;
 
-import cn.bmob.v3.Bmob;
+import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.listener.SaveListener;
 
 public class LoginActivity extends Activity implements View.OnClickListener {
@@ -35,11 +34,9 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        Bmob.initialize(this, CheckUtils.APPID);
-        mSharedPreferences = getSharedPreferences("user_info", Context.MODE_APPEND);
         setContentView(R.layout.activity_login);
         super.onCreate(savedInstanceState);
+        mSharedPreferences = getSharedPreferences("user_info", Context.MODE_APPEND);
         initView();
         initEvent();
     }
@@ -77,15 +74,18 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                     user.login(this, new SaveListener() {
                         @Override
                         public void onSuccess() {
+                            String tag = (String) BmobUser.getObjectByKey(LoginActivity.this, "tag");
                             SharedPreferences.Editor editor = mSharedPreferences.edit();
                             editor.putString("username", et_username.getText().toString());
                             editor.putString("userpwd", et_password.getText().toString());
                             editor.putBoolean("status", true);
                             editor.commit();
-                            setResult(MainActivity.LOGIN_CODE);
-                            Intent intent = new Intent();
-                            intent.setClass(getApplicationContext(),MainActivity.class);
-                            startActivity(intent);
+                            if ("0".equals(tag)) {
+                                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                            } else if ("1".equals(tag)) {
+
+                                startActivity(new Intent(LoginActivity.this, ShopMainActivity.class));
+                            }
                             finish();
                         }
 
@@ -96,6 +96,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
                         @Override
                         public void onFailure(int i, String s) {
+                            Log.d("TAG",s);
                             showSnackBar("账号或密码不正确");
                         }
                     });
@@ -106,9 +107,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.regist_textview:
                 Intent intent = new Intent();
-                intent.setClass(LoginActivity.this, com.aolei.jxustnc.ordersystem.activity.RegistActivity.class);
+                intent.setClass(LoginActivity.this, RegistActivity.class);
                 startActivity(intent);
-                finish();
             default:
                 break;
         }

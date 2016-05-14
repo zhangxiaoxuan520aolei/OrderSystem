@@ -87,7 +87,8 @@ public class FoodDetailActivity extends AppCompatActivity implements View.OnClic
      * 获取网络数据
      */
     private void getNetData() {
-        HttpUtils.queryFoodCommment(this, foodId, new FindListener<Comment>() {
+        HttpUtils httpUtils = new HttpUtils(this);
+        httpUtils.queryFoodCommment(foodId, new FindListener<Comment>() {
             @Override
             public void onSuccess(List<Comment> list) {
                 data_list = list;

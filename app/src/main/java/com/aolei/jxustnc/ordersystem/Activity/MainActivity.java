@@ -14,14 +14,11 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.aolei.jxustnc.ordersystem.R;
 import com.aolei.jxustnc.ordersystem.fragment.CanteenFragment1;
@@ -30,6 +27,10 @@ import com.aolei.jxustnc.ordersystem.fragment.CanteenFragment3;
 import com.aolei.jxustnc.ordersystem.fragment.HomeFragment;
 import com.aolei.jxustnc.ordersystem.fragment.PurchaseFragment;
 import com.aolei.jxustnc.ordersystem.util.ToastUtil;
+
+import cn.bmob.push.BmobPush;
+import cn.bmob.v3.BmobInstallation;
+import cn.bmob.v3.BmobPushManager;
 
 public class MainActivity extends FragmentActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
     private Toolbar toolbar;
@@ -40,12 +41,16 @@ public class MainActivity extends FragmentActivity implements NavigationView.OnN
     private SharedPreferences mSharedPreferences;
     private ImageView nav_imageView;
     private TextView mStatusText;
+     BmobPushManager bmobPushManager;
     public static final int LOGIN_CODE = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        BmobInstallation.getCurrentInstallation(this).save();
+        BmobPush.startWork(this);
+        bmobPushManager = new BmobPushManager(this);
         mSharedPreferences = getSharedPreferences("user_info", Context.MODE_APPEND);
         initView();
         initEvent();
@@ -84,26 +89,6 @@ public class MainActivity extends FragmentActivity implements NavigationView.OnN
         currentFragment = homeFragment;
         getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, homeFragment).commit();
 
-        /**
-         * 添加数据，用作测试
-         Food food = new Food();
-         food.setName("茄子豆角");
-         food.setPrice("8");
-         food.setSold_count("239");
-         Store store = new Store();
-         store.setStore_name("第三食堂");
-         store.setObjectId("gHqkMMMQ");
-         food.setStore(store);
-         food.setImg_url("");
-         food.save(this, new SaveListener() {
-        @Override public void onSuccess() {
-
-        }
-
-        @Override public void onFailure(int i, String s) {
-
-        }
-        });*/
     }
 
     /**
@@ -231,6 +216,8 @@ public class MainActivity extends FragmentActivity implements NavigationView.OnN
     public boolean isLogin(SharedPreferences sharedPreferences) {
         if ("".equals(sharedPreferences.getString("username", "")) && ("".equals(sharedPreferences.getString("userpwd", "")))) {
             return false;
-        } else return true;
+        } else {
+            return true;
+        }
     }
 }

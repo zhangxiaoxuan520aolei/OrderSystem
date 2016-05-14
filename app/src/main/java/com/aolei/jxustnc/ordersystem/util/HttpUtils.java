@@ -5,55 +5,100 @@ import android.util.Log;
 
 import com.aolei.jxustnc.ordersystem.entity.Comment;
 import com.aolei.jxustnc.ordersystem.entity.Food;
+import com.aolei.jxustnc.ordersystem.entity.Order;
+import com.aolei.jxustnc.ordersystem.entity.User;
 
+import cn.bmob.newim.BmobIM;
+import cn.bmob.newim.listener.ConnectListener;
 import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 
 /**
- * 作者：aolei on 2016/4/21 16:48
- * 邮箱：807648567@qq.com
- * 解释权：敖磊
+ * 访问网络类
+ * Created by NewOr on 2016/4/21.
  */
 public class HttpUtils {
+
+    private Context mContext;
+
+    public HttpUtils(Context context) {
+        mContext = context;
+    }
 
     /**
      * 查询所有食物方法
      *
-     * @param context
+     *
      * @param query
      */
-    public static void queryFood(Context context, BmobQuery<Food> query, FindListener<Food> foodFindListener) {
+    public void queryFood(BmobQuery<Food> query, FindListener<Food> foodFindListener) {
         query.order("-sold_count");
-        query.include("store");
-        query.findObjects(context, foodFindListener);
+        query.include("store.user");
+        query.findObjects(mContext, foodFindListener);
     }
 
     /**
-     * 通过店名查找店内食物
-     * @param context
-     * @param query
-     * @param foodFindListener
-     * @param store_objectId
-     */
-    public static void queryFoodByStoreName(Context context,BmobQuery<Food> query,FindListener<Food> foodFindListener,String store_objectId){
-        Log.d("name",store_objectId);
-        query.addWhereEqualTo("store", store_objectId);
-        query.order("-updatedAt");
-        query.include("store");
-        query.findObjects(context,foodFindListener);
-    }
-    /**
      * 查询食物评论
      *
-     * @param context
      * @param foodId
      * @param findListener
      */
-    public static void queryFoodCommment(Context context, String foodId, FindListener<Comment> findListener) {
+    public void queryFoodCommment(String foodId, FindListener<Comment> findListener) {
         BmobQuery<Comment> query = new BmobQuery<>();
         query.include("user");
         query.include("food");
         query.addWhereEqualTo("food", foodId);
-        query.findObjects(context, findListener);
+        query.findObjects(mContext, findListener);
+    }
+
+    /**
+     * 通过店名查找店内食物
+     *
+     *
+     * @param query
+     * @param foodFindListener
+     * @param store_objectId
+     */
+    public void queryFoodByStoreName(BmobQuery<Food> query, FindListener<Food> foodFindListener, String store_objectId) {
+        Log.d("name", store_objectId);
+        query.addWhereEqualTo("store", store_objectId);
+        query.order("-updatedAt");
+        query.include("store.user");
+        query.findObjects(mContext, foodFindListener);
+    }
+
+    /**
+     * 查询用户订单信息
+     *
+     * @param listener
+     */
+    public void queryUserMsg(String store_uid, FindListener<Order> listener) {
+        BmobQuery<Order> query = new BmobQuery<>();
+        query.include("user");
+        query.addWhereEqualTo("store_uid", store_uid);
+        query.findObjects(mContext, listener);
+    }
+
+    /**
+     * 连接Bmob服务器
+     */
+    public void connectBmobServer() {
+        User user = BmobUser.getCurrentUser(mContext, User.class);
+        if (user != null) {
+            BmobIM.connect(user.getObjectId(), new ConnectListener() {
+                @Override
+                public void done(String uid, BmobException e) {
+                    if (e == null) {
+                        Log.d("NewOrin", "Bmob服务器连接成功");
+                        ToastUtil.showShort(mContext, "Connected");
+                    } else {
+                        Log.d("NewOrin", "Bmob服务器连接失败");
+                        ToastUtil.showShort(mContext, "Connected Failed");
+                    }
+                }
+            });
+        }
     }
 }

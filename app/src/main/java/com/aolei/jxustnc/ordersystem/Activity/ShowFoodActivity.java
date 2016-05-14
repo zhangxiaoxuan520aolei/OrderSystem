@@ -68,7 +68,8 @@ public class ShowFoodActivity extends AppCompatActivity implements SwipeRefreshL
     private void getNetDate() {
         if (NetworkUtil.isConnected(getApplicationContext())) {
             BmobQuery<Food> query = new BmobQuery<>();
-            HttpUtils.queryFoodByStoreName(getApplicationContext(), query, new FindListener<Food>() {
+            HttpUtils httpUtils = new HttpUtils(this);
+            httpUtils.queryFoodByStoreName(query, new FindListener<Food>() {
                 @Override
                 public void onSuccess(List<Food> list) {
                     mFoodList = list;
